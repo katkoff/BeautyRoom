@@ -3,7 +3,7 @@ package com.mdgroup.beautyroom.ui.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.mdgroup.beautyroom.R
-import com.mdgroup.beautyroom.navigation.AuthScreen
+import com.mdgroup.beautyroom.navigation.LoginScreen
 import org.koin.android.ext.android.inject
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            router.navigateTo(AuthScreen())
+            router.navigateTo(LoginScreen())
         }
     }
 

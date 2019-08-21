@@ -4,7 +4,8 @@
     <!-- Login -->
     <string name="login_phone_hint">Введите номер телефона</string>
     <string name="login_password_hint">Введите пароль</string>
-    <string name="login_button_enter">Войти</string>
-    <string name="login_button_authorization">Авторизация</string>
+    <string name="login_password_confirm_hint">Подтвердите пароль</string>
+    <string name="login_button_sign_in">Войти</string>
+    <string name="login_button_sign_up">Регистрация</string>
 
 </resources>
