@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Base.V21.AppTheme" />
+
+    <style name="Base.V21.AppTheme" parent="Theme.BeautyRoom">
+        <!-- Here will be status bar style -->
+    </style>
+
+</resources>
