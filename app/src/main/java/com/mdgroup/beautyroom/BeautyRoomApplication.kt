@@ -12,6 +12,7 @@ class BeautyRoomApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        //todo Придумать, как перенести модули в отдельный пакет
         val cicerone = Cicerone.create()
         val navigationModule = module {
             single { cicerone }
@@ -23,7 +24,5 @@ class BeautyRoomApplication : Application() {
             androidContext(this@BeautyRoomApplication)
             modules(navigationModule)
         }
-
-
     }
 }

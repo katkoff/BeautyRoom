@@ -1,3 +1,10 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
     <string name="app_name">BeautyRoom</string>
+
+    <!-- Login -->
+    <string name="login_phone_hint">Введите номер телефона</string>
+    <string name="login_password_hint">Введите пароль</string>
+    <string name="login_button_enter">Войти</string>
+    <string name="login_button_authorization">Авторизация</string>
+
 </resources>

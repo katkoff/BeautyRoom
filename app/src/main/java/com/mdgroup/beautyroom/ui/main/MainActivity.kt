@@ -14,8 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private val navigatorHolder: NavigatorHolder by inject()
     private val router: Router by inject()
-    private val navigator = SupportAppNavigator(this,
-        R.id.frameLayout_mainContainer)
+    private val navigator = SupportAppNavigator(this, R.id.frameLayout_mainContainer)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
