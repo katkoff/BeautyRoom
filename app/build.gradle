@@ -35,6 +35,7 @@ dependencies {
 
     // ROUTING - CICERONE
     implementation "ru.terrakok.cicerone:cicerone:5.0.0"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.0'
 
     // MVVM
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-alpha03"
@@ -47,6 +48,11 @@ dependencies {
     // OKHTTP 3
     implementation "com.squareup.okhttp3:okhttp:4.1.0"
 
-    // DI
+    // SharedPreferences
+    implementation 'com.chibatching.kotpref:kotpref:2.9.1'
+
+    // DI - KOIN
     implementation "org.koin:koin-android:2.0.1"
+    implementation "org.koin:koin-android-scope:2.0.1"
+    implementation "org.koin:koin-android-viewmodel:2.0.1"
 }
