@@ -2,11 +2,14 @@
     <string name="app_name">BeautyRoom</string>
 
     <!-- Login -->
-    <string name="login_phone_hint">Введите номер телефона</string>
-    <string name="login_password_hint">Введите пароль</string>
-    <string name="login_password_confirm_hint">Подтвердите пароль</string>
-    <string name="login_button_sign_in">Войти</string>
-    <string name="login_button_sign_up">Регистрация</string>
-    <string name="login_description_label">Для продолжения действия необходимо авторизоваться</string>
+    <string name="sign_in_phone_hint">Введите номер телефона</string>
+    <string name="sign_in_password_hint">Введите пароль</string>
+    <string name="sign_in_password_confirm_hint">Подтвердите пароль</string>
+    <string name="sign_in_button_sign_in">Войти</string>
+    <string name="sign_in_button_sign_up">Регистрация</string>
+    <string name="sign_in_description_label">Для продолжения действия необходимо авторизоваться</string>
+
+    <!-- Auth -->
+    <string name="sign_up_name_hint">Введите имя</string>
 
 </resources>

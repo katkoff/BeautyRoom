@@ -5,27 +5,33 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/textView_descriptionLabel"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/login_description_label"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:hint="@string/sign_in_phone_hint"
+        app:layout_constraintBottom_toTopOf="@+id/inputLayout_phone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputEditText_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputLayout_phone"
         android:layout_width="0dp"
+        android:layout_marginTop="8dp"
         android:layout_height="wrap_content"
-        android:hint="@string/login_phone_hint"
+        android:hint="@string/sign_in_phone_hint"
         app:layout_constraintBottom_toTopOf="@+id/inputLayout_password"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_descriptionLabel"
-        app:layout_constraintVertical_chainStyle="packed">
+        app:layout_constraintTop_toBottomOf="@+id/inputLayout_name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputEditText_phone"
@@ -38,8 +44,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="@string/login_password_hint"
-        app:layout_constraintBottom_toTopOf="@+id/button_sign_in"
+        android:hint="@string/sign_in_password_hint"
+        app:layout_constraintBottom_toTopOf="@+id/inputLayout_confirmPassword"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputLayout_phone"
@@ -56,26 +62,38 @@
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/button_sign_in"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_confirmPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/login_button_sign_in"
+        android:layout_marginTop="8dp"
+        android:hint="@string/sign_in_password_hint"
         app:layout_constraintBottom_toTopOf="@+id/button_sign_up"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayout_password" />
+        app:layout_constraintTop_toBottomOf="@+id/inputLayout_password"
+        app:passwordToggleDrawable="@drawable/show_passport_selector"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputEditText_confirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLength="50"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button_sign_up"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/login_button_sign_up"
+        android:layout_marginTop="32dp"
+        android:text="@string/sign_in_button_sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_sign_in" />
+        app:layout_constraintTop_toBottomOf="@+id/inputLayout_confirmPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

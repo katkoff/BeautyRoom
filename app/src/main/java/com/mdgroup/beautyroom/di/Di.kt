@@ -2,11 +2,11 @@ package com.mdgroup.beautyroom.di
 
 import android.content.Context
 import com.mdgroup.beautyroom.data.pref.PrefSessionGateway
-import com.mdgroup.beautyroom.data.stub.StubLoginGateway
-import com.mdgroup.beautyroom.domain.gateway.LoginGateway
+import com.mdgroup.beautyroom.data.stub.StubSignInGateway
 import com.mdgroup.beautyroom.domain.gateway.SessionGateway
-import com.mdgroup.beautyroom.domain.interactor.LoginInteractor
-import com.mdgroup.beautyroom.ui.login.LoginViewModel
+import com.mdgroup.beautyroom.domain.gateway.SignInGateway
+import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
+import com.mdgroup.beautyroom.ui.signin.SignInViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -24,16 +24,16 @@ object Di {
         }
 
         val dataModule = module {
-            single { StubLoginGateway() as LoginGateway }
+            single { StubSignInGateway() as SignInGateway }
             single { PrefSessionGateway() as SessionGateway }
         }
 
         val domainModule = module {
-            factory { LoginInteractor(get(), get()) }
+            factory { SignInInteractor(get(), get()) }
         }
 
-        val loginModule = module {
-            viewModel { LoginViewModel(get(), get()) }
+        val signInModule = module {
+            viewModel { SignInViewModel(get(), get()) }
         }
 
         startKoin {
@@ -43,7 +43,7 @@ object Di {
                     navigationModule,
                     dataModule,
                     domainModule,
-                    loginModule
+                    signInModule
                 )
             )
         }

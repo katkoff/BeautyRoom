@@ -1,12 +1,12 @@
 package com.mdgroup.beautyroom.domain.model
 
-sealed class ServerLoginResult {
+sealed class ServerSignInResult {
 
     data class Success(
         val token: String
-    ) : ServerLoginResult()
+    ) : ServerSignInResult()
 
     data class Error(
         val error: Throwable
-    ) : ServerLoginResult()
+    ) : ServerSignInResult()
 }
