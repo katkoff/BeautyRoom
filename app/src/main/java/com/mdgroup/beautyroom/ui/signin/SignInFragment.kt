@@ -17,14 +17,20 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initClickListeners()
+    }
+
+    private fun initClickListeners() {
         button_sign_in.setOnClickListener {
             GlobalScope.launch {
-                signInViewModel.login(
+                signInViewModel.signIn(
                     inputEditText_phone.text.toString().trim(),
                     inputEditText_password.text.toString().trim()
                 )
             }
         }
+
+        button_sign_up.setOnClickListener { signInViewModel.signUp() }
     }
 
     companion object {

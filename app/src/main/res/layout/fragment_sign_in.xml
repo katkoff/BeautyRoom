@@ -8,6 +8,8 @@
     <TextView
         android:id="@+id/textView_descriptionLabel"
         android:layout_width="0dp"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
         android:layout_height="wrap_content"
         android:text="@string/sign_in_description_label"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -23,8 +25,8 @@
         app:layout_constraintBottom_toTopOf="@+id/inputLayout_password"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_descriptionLabel"
-        app:layout_constraintVertical_chainStyle="packed">
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toBottomOf="@+id/textView_descriptionLabel">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputEditText_phone"

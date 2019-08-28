@@ -4,7 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
-import com.mdgroup.beautyroom.domain.model.LoginResult
+import com.mdgroup.beautyroom.domain.model.SignInResult
+import com.mdgroup.beautyroom.navigation.SignUpScreen
 import kotlinx.coroutines.launch
 import ru.terrakok.cicerone.Router
 
@@ -13,19 +14,21 @@ class SignInViewModel(
     private val router: Router
 ) : ViewModel() {
 
-    suspend fun login(login: String, password: String) {
+    suspend fun signIn(login: String, password: String) {
         viewModelScope.launch {
-            val loginResult = signInInteractor.login(login, password)
-            when (loginResult) {
-                LoginResult.Success -> {
+            val signIn = signInInteractor.signIn(login, password)
+            when (signIn) {
+                SignInResult.Success -> {
                     // todo call router
 
                     Log.d("SignInViewModel", "Success")
                 }
-                is LoginResult.Error -> {
-                    Log.d("SignInViewModel", "Error " + loginResult.message)
+                is SignInResult.Error -> {
+                    Log.d("SignInViewModel", "Error " + signIn.message)
                 }
             }
         }
     }
+
+    fun signUp() = router.navigateTo(SignUpScreen())
 }

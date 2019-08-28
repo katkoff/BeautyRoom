@@ -1,10 +1,10 @@
 package com.mdgroup.beautyroom.domain.model
 
-sealed class LoginResult {
+sealed class SignInResult {
 
-    object Success : LoginResult()
+    object Success : SignInResult()
 
     data class Error(
         val message: String
-    ) : LoginResult()
+    ) : SignInResult()
 }

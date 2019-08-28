@@ -7,6 +7,7 @@ import com.mdgroup.beautyroom.domain.gateway.SessionGateway
 import com.mdgroup.beautyroom.domain.gateway.SignInGateway
 import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
 import com.mdgroup.beautyroom.ui.signin.SignInViewModel
+import com.mdgroup.beautyroom.ui.signup.SignUpViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -36,6 +37,10 @@ object Di {
             viewModel { SignInViewModel(get(), get()) }
         }
 
+        val signUpModule = module {
+            viewModel { SignUpViewModel() }
+        }
+
         startKoin {
             androidContext(applicationContext)
             modules(
@@ -43,7 +48,8 @@ object Di {
                     navigationModule,
                     dataModule,
                     domainModule,
-                    signInModule
+                    signInModule,
+                    signUpModule
                 )
             )
         }
