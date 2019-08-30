@@ -17,6 +17,6 @@ class BeautyRoomApplication : Application() {
 
     private fun initDi() = startKoin {
         androidContext(this@BeautyRoomApplication)
-        modules
+        modules(modules)
     }
 }
