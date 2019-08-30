@@ -2,6 +2,10 @@ package com.mdgroup.beautyroom.di.modules
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.mdgroup.beautyroom.data.api.BeautyRoomApiService
+import com.mdgroup.beautyroom.data.api.gateway.ApiSignInGateway
+import com.mdgroup.beautyroom.data.pref.PrefSessionGateway
+import com.mdgroup.beautyroom.domain.gateway.SessionGateway
+import com.mdgroup.beautyroom.domain.gateway.SignInGateway
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -20,5 +24,8 @@ val dataModule = module {
             .build()
     }
 
-    factory { get<Retrofit>().create(BeautyRoomApiService::class.java) }
+    single { get<Retrofit>().create(BeautyRoomApiService::class.java) }
+
+    single<SessionGateway> { PrefSessionGateway() }
+    single<SignInGateway> { ApiSignInGateway(get()) }
 }
