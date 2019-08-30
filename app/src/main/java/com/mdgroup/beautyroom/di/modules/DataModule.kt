@@ -1,4 +1,4 @@
-package com.mdgroup.beautyroom.di.moduls
+package com.mdgroup.beautyroom.di.modules
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.mdgroup.beautyroom.data.api.BeautyRoomApiService

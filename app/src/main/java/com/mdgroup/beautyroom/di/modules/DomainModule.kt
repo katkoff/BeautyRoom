@@ -1,4 +1,4 @@
-package com.mdgroup.beautyroom.di.moduls
+package com.mdgroup.beautyroom.di.modules
 
 import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
 import org.koin.dsl.module

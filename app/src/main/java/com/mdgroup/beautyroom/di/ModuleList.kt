@@ -1,6 +1,6 @@
 package com.mdgroup.beautyroom.di
 
-import com.mdgroup.beautyroom.di.moduls.*
+import com.mdgroup.beautyroom.di.modules.*
 
 val modules = listOf(
     navigationModule,

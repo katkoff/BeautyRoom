@@ -1,4 +1,4 @@
-package com.mdgroup.beautyroom.di.moduls
+package com.mdgroup.beautyroom.di.modules
 
 import org.koin.dsl.module
 import ru.terrakok.cicerone.Cicerone
