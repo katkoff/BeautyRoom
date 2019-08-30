@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            router.navigateTo(SignInScreen())
+            router.newRootScreen(SignInScreen())
         }
     }
 

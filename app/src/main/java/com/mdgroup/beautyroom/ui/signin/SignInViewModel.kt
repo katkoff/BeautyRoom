@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
+import com.mdgroup.beautyroom.domain.model.SignIn
 import com.mdgroup.beautyroom.domain.model.SignInResult
 import com.mdgroup.beautyroom.navigation.SignUpScreen
 import kotlinx.coroutines.launch
@@ -14,9 +15,9 @@ class SignInViewModel(
     private val router: Router
 ) : ViewModel() {
 
-    suspend fun signIn(login: String, password: String) {
+    suspend fun onSignInClicked(signIn: SignIn) {
         viewModelScope.launch {
-            val signIn = signInInteractor.signIn(login, password)
+            val signIn = signInInteractor.signIn(signIn)
             when (signIn) {
                 SignInResult.Success -> {
                     // todo call router

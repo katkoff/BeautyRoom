@@ -4,6 +4,7 @@ import com.mdgroup.beautyroom.domain.gateway.SessionGateway
 import com.mdgroup.beautyroom.domain.gateway.SignInGateway
 import com.mdgroup.beautyroom.domain.model.ServerSession
 import com.mdgroup.beautyroom.domain.model.ServerSignInResult
+import com.mdgroup.beautyroom.domain.model.SignIn
 import com.mdgroup.beautyroom.domain.model.SignInResult
 
 class SignInInteractor(
@@ -11,8 +12,8 @@ class SignInInteractor(
     private val sessionGateway: SessionGateway
 ) {
 
-    suspend fun signIn(login: String, password: String): SignInResult {
-        val serverLoginResult = signInGateway.signIn(login, password)
+    suspend fun signIn(signIn: SignIn): SignInResult {
+        val serverLoginResult = signInGateway.signIn(signIn)
         return when (serverLoginResult) {
             is ServerSignInResult.Success -> {
                 sessionGateway.serverSession = ServerSession(serverLoginResult.token)

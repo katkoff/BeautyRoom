@@ -1,8 +1,9 @@
 package com.mdgroup.beautyroom.di
 
 import android.content.Context
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.mdgroup.beautyroom.data.api.gateway.ApiSignInGateway
 import com.mdgroup.beautyroom.data.pref.PrefSessionGateway
-import com.mdgroup.beautyroom.data.stub.StubSignInGateway
 import com.mdgroup.beautyroom.domain.gateway.SessionGateway
 import com.mdgroup.beautyroom.domain.gateway.SignInGateway
 import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
@@ -12,6 +13,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
+import retrofit2.Retrofit
 import ru.terrakok.cicerone.Cicerone
 
 object Di {
@@ -24,8 +26,13 @@ object Di {
             single { cicerone.router }
         }
 
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://194.87.145.166:3000/api/")
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .build()
         val dataModule = module {
-            single { StubSignInGateway() as SignInGateway }
+            single { retrofit }
+            single { ApiSignInGateway(get()) as SignInGateway }
             single { PrefSessionGateway() as SessionGateway }
         }
 
