@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName
 class SignInApiModel(
     @SerializedName("login")
     val phone: String,
-    @SerializedName("pass")
+    @SerializedName("password")
     val password: String
 )

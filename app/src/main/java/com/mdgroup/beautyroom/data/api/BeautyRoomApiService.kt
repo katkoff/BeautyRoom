@@ -11,6 +11,6 @@ interface BeautyRoomApiService {
     @FormUrlEncoded
     suspend fun signIn(
         @Field("login") login: String,
-        @Field("pass") password: String
+        @Field("password") password: String
     ): ServerSignInResult
 }
