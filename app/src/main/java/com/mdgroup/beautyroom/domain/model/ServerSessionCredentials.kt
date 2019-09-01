@@ -1,6 +1,5 @@
 package com.mdgroup.beautyroom.domain.model
 
-data class SignInDomainResult(
-    val message: String,
+data class ServerSessionCredentials(
     val token: String
 )

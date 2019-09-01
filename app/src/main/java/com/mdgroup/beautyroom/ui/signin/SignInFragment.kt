@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.mdgroup.beautyroom.R
-import com.mdgroup.beautyroom.domain.model.SignIn
+import com.mdgroup.beautyroom.domain.model.UserCredentials
 import kotlinx.android.synthetic.main.fragment_sign_in.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -18,6 +20,12 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        signInViewModel.successMessage.observe(this, Observer { message ->
+            Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
+        })
+        signInViewModel.errorMessage.observe(this, Observer { message ->
+            Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
+        })
         initClickListeners()
     }
 
@@ -31,8 +39,8 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         button_sign_up.setOnClickListener { signInViewModel.signUp() }
     }
 
-    private fun assembleSignInModel(): SignIn {
-        return SignIn(
+    private fun assembleSignInModel(): UserCredentials {
+        return UserCredentials(
             inputEditText_phone.text.toString().trim(),
             inputEditText_password.text.toString().trim()
         )

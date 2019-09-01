@@ -1,6 +1,6 @@
 package com.mdgroup.beautyroom.domain.model
 
-data class SignIn(
+data class UserCredentials(
     val phone: String,
     val password: String
 )

@@ -2,7 +2,7 @@ package com.mdgroup.beautyroom.data.api.model
 
 import com.google.gson.annotations.SerializedName
 
-data class SignInApiModel(
+data class SignInRequestApiModel(
     @SerializedName("login")
     val phone: String,
     @SerializedName("password")

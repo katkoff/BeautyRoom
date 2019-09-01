@@ -1,9 +1,10 @@
 package com.mdgroup.beautyroom.domain.gateway
 
-import com.mdgroup.beautyroom.domain.model.SignIn
-import com.mdgroup.beautyroom.domain.model.SignInDomainResult
+import com.mdgroup.beautyroom.domain.model.GenericResult
+import com.mdgroup.beautyroom.domain.model.ServerSessionCredentials
+import com.mdgroup.beautyroom.domain.model.UserCredentials
 
 interface SignInGateway {
 
-    suspend fun signIn(signIn: SignIn): SignInDomainResult
+    suspend fun signIn(userCredentials: UserCredentials): GenericResult<ServerSessionCredentials>
 }
