@@ -1,7 +1,7 @@
 package com.mdgroup.beautyroom.navigation
 
 import androidx.fragment.app.Fragment
-import com.mdgroup.beautyroom.ui.masters.MasterListFragment
+import com.mdgroup.beautyroom.ui.master.list.MasterListFragment
 import com.mdgroup.beautyroom.ui.signin.SignInFragment
 import com.mdgroup.beautyroom.ui.signup.SignUpFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen

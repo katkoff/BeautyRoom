@@ -1,4 +1,4 @@
-package com.mdgroup.beautyroom.ui.masters
+package com.mdgroup.beautyroom.ui.master.list
 
 import android.os.Bundle
 import android.view.View
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.ui.base.bind
 import com.mdgroup.beautyroom.ui.base.snackbar
-import com.mdgroup.beautyroom.ui.masters.list.MasterListAdapter
+import com.mdgroup.beautyroom.ui.master.list.adapter.MasterListAdapter
 import kotlinx.android.synthetic.main.fragment_master_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 

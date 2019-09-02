@@ -1,4 +1,4 @@
-package com.mdgroup.beautyroom.ui.masters
+package com.mdgroup.beautyroom.ui.master.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

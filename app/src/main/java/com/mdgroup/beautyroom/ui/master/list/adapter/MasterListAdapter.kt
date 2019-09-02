@@ -1,4 +1,4 @@
-package com.mdgroup.beautyroom.ui.masters.list
+package com.mdgroup.beautyroom.ui.master.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
