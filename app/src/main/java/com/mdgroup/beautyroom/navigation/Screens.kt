@@ -1,7 +1,7 @@
 package com.mdgroup.beautyroom.navigation
 
 import androidx.fragment.app.Fragment
-import com.mdgroup.beautyroom.ui.masters.MastersFragment
+import com.mdgroup.beautyroom.ui.masters.MasterListFragment
 import com.mdgroup.beautyroom.ui.signin.SignInFragment
 import com.mdgroup.beautyroom.ui.signup.SignUpFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
@@ -18,8 +18,8 @@ class SignUpScreen : SupportAppScreen() {
     }
 }
 
-class MastersScreen : SupportAppScreen() {
+class MasterListScreen : SupportAppScreen() {
     override fun getFragment(): Fragment {
-        return MastersFragment.newInstance()
+        return MasterListFragment.newInstance()
     }
 }

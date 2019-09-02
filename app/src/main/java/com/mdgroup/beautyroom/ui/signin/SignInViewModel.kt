@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
 import com.mdgroup.beautyroom.domain.model.GenericResult
 import com.mdgroup.beautyroom.domain.model.UserCredentials
-import com.mdgroup.beautyroom.navigation.MastersScreen
+import com.mdgroup.beautyroom.navigation.MasterListScreen
 import com.mdgroup.beautyroom.navigation.SignUpScreen
 import kotlinx.coroutines.launch
 import ru.terrakok.cicerone.Router
@@ -24,7 +24,7 @@ class SignInViewModel(
             val signInResult = signInInteractor.signIn(userCredentials)
             when (signInResult) {
                 is GenericResult.Success -> {
-                    router.replaceScreen(MastersScreen())
+                    router.replaceScreen(MasterListScreen())
                     Log.d("SignInViewModel", "Success")
                 }
                 is GenericResult.Error -> {
