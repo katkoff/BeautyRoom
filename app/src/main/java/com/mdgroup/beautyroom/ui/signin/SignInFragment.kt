@@ -20,9 +20,6 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        signInViewModel.successMessage.observe(this, Observer { message ->
-            Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
-        })
         signInViewModel.errorMessage.observe(this, Observer { message ->
             Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
         })
@@ -36,7 +33,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             }
         }
 
-        button_sign_up.setOnClickListener { signInViewModel.signUp() }
+        button_sign_up.setOnClickListener { signInViewModel.onSignUpClicked() }
     }
 
     private fun assembleSignInModel(): UserCredentials {

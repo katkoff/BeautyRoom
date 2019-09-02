@@ -9,5 +9,7 @@ val modules = listOf(
     domainModule,
 
     signInModule,
-    signUpModule
+    signUpModule,
+
+    mastersModule
 )
