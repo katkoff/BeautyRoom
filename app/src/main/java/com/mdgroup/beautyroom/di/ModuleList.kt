@@ -1,8 +1,10 @@
 package com.mdgroup.beautyroom.di
 
+import android.content.Context
 import com.mdgroup.beautyroom.di.modules.*
+import org.koin.core.module.Module
 
-val modules = listOf(
+fun allModules(appContext: Context): List<Module> = listOf(
     navigationModule,
     dataModule,
 
@@ -11,5 +13,6 @@ val modules = listOf(
     signInModule,
     signUpModule,
 
-    mastersModule
+    mastersModule,
+    presentationModule(appContext)
 )

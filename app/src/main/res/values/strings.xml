@@ -14,4 +14,7 @@
 
     <!-- Masters -->
 
+    <!-- Generic strings -->
+    <string name="error_unknown">Что-то пошло не так, попробуйте ещё раз</string>
+
 </resources>

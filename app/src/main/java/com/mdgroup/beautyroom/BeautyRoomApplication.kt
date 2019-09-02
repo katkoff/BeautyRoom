@@ -2,7 +2,7 @@ package com.mdgroup.beautyroom
 
 import android.app.Application
 import com.chibatching.kotpref.Kotpref
-import com.mdgroup.beautyroom.di.modules
+import com.mdgroup.beautyroom.di.allModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -17,6 +17,6 @@ class BeautyRoomApplication : Application() {
 
     private fun initDi() = startKoin {
         androidContext(this@BeautyRoomApplication)
-        modules(modules)
+        modules(allModules(applicationContext))
     }
 }
