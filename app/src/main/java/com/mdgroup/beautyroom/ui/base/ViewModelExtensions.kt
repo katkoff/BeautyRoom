@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-//TODO Если в обсервер прилетит null, то скорее всего будет NPE - исправить
+//TODO: Если в обсервер прилетит null, то скорее всего будет NPE - исправить
 fun <T> Fragment.bind(liveData: LiveData<T>, onChanged: (t: T) -> Unit) {
     liveData.observe(this.viewLifecycleOwner, Observer {
         onChanged(it)

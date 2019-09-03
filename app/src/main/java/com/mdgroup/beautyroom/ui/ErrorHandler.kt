@@ -9,7 +9,7 @@ class ErrorHandler(
 ) {
 
     fun getErrorMessage(throwable: Throwable): String {
-        // todo resolve user-friendly error message by throwable
+        //TODO: resolve user-friendly error message by throwable
         return resources.getString(R.string.error_unknown)
     }
 }

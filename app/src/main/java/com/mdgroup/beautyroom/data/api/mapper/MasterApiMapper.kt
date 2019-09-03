@@ -17,12 +17,12 @@ object MasterApiMapper {
 
     private fun mapApiMasterModelToDomain(masterApiModel: MasterApiModel) = MasterModel(
         id = masterApiModel.id,
-        firstName = masterApiModel.firstName,
-        lastName = masterApiModel.lastName,
-        mobilePhone = masterApiModel.mobilePhone,
-        information = masterApiModel.information,
-        photo = masterApiModel.photo,
-        address = masterApiModel.address,
-        email = masterApiModel.email
+        firstName = masterApiModel.firstName.orEmpty(),
+        lastName = masterApiModel.lastName.orEmpty(),
+        mobilePhone = masterApiModel.mobilePhone.orEmpty(),
+        information = masterApiModel.information.orEmpty(),
+        photo = masterApiModel.photo.orEmpty(),
+        address = masterApiModel.address.orEmpty(),
+        email = masterApiModel.email.orEmpty()
     )
 }
