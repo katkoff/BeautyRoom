@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class MasterApiResponseModel(
     @SerializedName("totalItemsCount")
-    val totalItemsCount: Int?,
+    val totalItemsCount: Int,
     @SerializedName("items")
-    val masters: List<MasterApiModel>?
+    val masters: List<MasterApiModel>
 )

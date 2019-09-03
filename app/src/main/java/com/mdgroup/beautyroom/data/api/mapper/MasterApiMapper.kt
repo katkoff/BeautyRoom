@@ -6,11 +6,9 @@ import com.mdgroup.beautyroom.domain.model.MasterModel
 
 object MasterApiMapper {
 
-    private const val INVALID_ID = -1
-
     fun mapApiMasterListToDomain(masterApiResponseModel: MasterApiResponseModel): List<MasterModel> {
         val masters = masterApiResponseModel.masters
-        return if (masters == null || masters.isEmpty()) {
+        return if (masters.isEmpty()) {
             emptyList()
         } else {
             masters.map { mapApiMasterModelToDomain(it) }
@@ -18,13 +16,13 @@ object MasterApiMapper {
     }
 
     private fun mapApiMasterModelToDomain(masterApiModel: MasterApiModel) = MasterModel(
-        id = masterApiModel.id ?: INVALID_ID,
-        firstName = masterApiModel.firstName.orEmpty(),
-        lastName = masterApiModel.lastName.orEmpty(),
-        mobilePhone = masterApiModel.mobilePhone.orEmpty(),
-        information = masterApiModel.information.orEmpty(),
-        photo = masterApiModel.photo.orEmpty(),
-        address = masterApiModel.address.orEmpty(),
-        email = masterApiModel.email.orEmpty()
+        id = masterApiModel.id,
+        firstName = masterApiModel.firstName,
+        lastName = masterApiModel.lastName,
+        mobilePhone = masterApiModel.mobilePhone,
+        information = masterApiModel.information,
+        photo = masterApiModel.photo,
+        address = masterApiModel.address,
+        email = masterApiModel.email
     )
 }
