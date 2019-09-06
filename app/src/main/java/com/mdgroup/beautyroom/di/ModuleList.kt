@@ -13,6 +13,8 @@ fun allModules(appContext: Context): List<Module> = listOf(
     signInModule,
     signUpModule,
 
+    bottomNavigationModule,
+
     mastersModule,
     presentationModule(appContext)
 )

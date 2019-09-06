@@ -17,4 +17,8 @@
     <!-- Generic strings -->
     <string name="error_unknown">Что-то пошло не так, попробуйте ещё раз</string>
 
+    <!-- Bottom navigation items -->
+    <string name="masters_menu_item">Мастера</string>
+    <string name="appointments_menu_item">Записи</string>
+
 </resources>

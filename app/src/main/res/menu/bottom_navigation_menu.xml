@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/masters_menu_item"
+        android:icon="@drawable/ic_masters_black_24dp"
+        android:title="@string/masters_menu_item" />
+    <item
+        android:id="@+id/appointments_menu_item"
+        android:icon="@drawable/ic_appointments_black_24dp"
+        android:title="@string/appointments_menu_item" />
+</menu>
