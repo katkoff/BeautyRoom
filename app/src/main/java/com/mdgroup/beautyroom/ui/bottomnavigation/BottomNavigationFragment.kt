@@ -4,49 +4,84 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commitNow
+import androidx.lifecycle.Lifecycle
 import com.mdgroup.beautyroom.R
-import com.mdgroup.beautyroom.ui.master.list.MasterListFragment
+import com.mdgroup.beautyroom.navigation.MasterListScreen
+import com.mdgroup.beautyroom.navigation.StubScreen
 import kotlinx.android.synthetic.main.fragment_bottom_navigation.*
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 class BottomNavigationFragment : Fragment(R.layout.fragment_bottom_navigation) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bindViewModel()
-        initBottomNavigationItemListeners()
-
-        goToMasterListFragment()
+        initBottomNavigation()
+        selectCurrentTab()
     }
 
-    private fun goToMasterListFragment() {
-        childFragmentManager.beginTransaction().replace(
-            R.id.frameLayout_commonContainer,
-            MasterListFragment.newInstance())
-            .commitNow()
+    private fun initBottomNavigation() {
+        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+            selectTab(getTabScreenById(menuItem.itemId))
+            true
+        }
     }
 
-    private fun bindViewModel() {
-
+    private fun selectCurrentTab() {
+        selectTab(getTabScreenByTag(getCurrentFragment()?.tag.orEmpty()))
     }
 
-    private fun initBottomNavigationItemListeners() {
-        bottomNavigationView.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.masters_menu_item -> {
-//                    presenter.onAchievementMenuItemClick()
-                    true
-                }
-                R.id.appointments_menu_item -> {
-//                    presenter.onProfileMenuItemClick()
-                    true
-                }
-                else -> false
+    private fun selectTab(screen: SupportAppScreen) {
+        val currentFragment: Fragment? = getCurrentFragment()
+        val nextFragment: Fragment? = childFragmentManager.findFragmentByTag(screen.screenKey)
+
+        if (currentFragment != null && currentFragment == nextFragment) {
+            // screen is already shown
+            return
+        }
+
+        childFragmentManager.commitNow {
+            if (nextFragment == null) {
+                add(R.id.frameLayout_commonContainer, screen.fragment, screen.screenKey)
+            }
+
+            currentFragment?.let {
+                hide(it)
+                setMaxLifecycle(it, Lifecycle.State.CREATED)
+            }
+            nextFragment?.let {
+                show(it)
+                setMaxLifecycle(it, Lifecycle.State.RESUMED)
             }
         }
     }
 
+    private fun getCurrentFragment(): Fragment? {
+        return childFragmentManager.fragments.firstOrNull { !it.isHidden }
+    }
+
+    private fun getTabScreenById(itemId: Int): SupportAppScreen {
+        return when (itemId) {
+            R.id.masters_menu_item -> masterListScreen
+            R.id.appointments_menu_item -> appointmentListScreen
+            else -> masterListScreen
+        }
+    }
+
+    private fun getTabScreenByTag(tag: String): SupportAppScreen {
+        return when (tag) {
+            masterListScreen.screenKey -> masterListScreen
+            appointmentListScreen.screenKey -> appointmentListScreen
+            else -> masterListScreen
+        }
+    }
+
     companion object {
+
+        private val masterListScreen = MasterListScreen()
+        private val appointmentListScreen = StubScreen() // TODO implement appointments screen
+
         fun newInstance() = BottomNavigationFragment().apply { arguments = bundleOf() }
     }
 }

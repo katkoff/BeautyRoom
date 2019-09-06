@@ -14,11 +14,14 @@
 
     <!-- Masters -->
 
-    <!-- Generic strings -->
-    <string name="error_unknown">Что-то пошло не так, попробуйте ещё раз</string>
-
     <!-- Bottom navigation items -->
     <string name="masters_menu_item">Мастера</string>
     <string name="appointments_menu_item">Записи</string>
+
+    <!-- Stub screen -->
+    <string name="stub_message">Скоро здесь что-то будет. А пока — лишь пустота и безмятежность.</string>
+
+    <!-- Generic strings -->
+    <string name="error_unknown">Что-то пошло не так, попробуйте ещё раз</string>
 
 </resources>
