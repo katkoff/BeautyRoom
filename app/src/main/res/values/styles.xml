@@ -5,9 +5,14 @@
 
     <style name="Theme.BeautyRoom" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/cyan</item>
+        <item name="colorPrimaryDark">@color/cyan_dark</item>
+        <item name="colorAccent">@color/pink</item>
+    </style>
+
+    <style name="Widget.BeautyRoom.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@color/bottom_navigation_icon</item>
+        <item name="itemTextColor">@color/bottom_navigation_icon</item>
     </style>
 
 </resources>
