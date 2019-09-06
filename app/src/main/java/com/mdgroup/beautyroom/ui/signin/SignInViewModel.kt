@@ -1,39 +1,40 @@
 package com.mdgroup.beautyroom.ui.signin
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
-import com.mdgroup.beautyroom.domain.model.GenericResult
 import com.mdgroup.beautyroom.domain.model.UserCredentials
 import com.mdgroup.beautyroom.navigation.MasterListScreen
 import com.mdgroup.beautyroom.navigation.SignUpScreen
-import kotlinx.coroutines.launch
+import com.mdgroup.beautyroom.ui.ErrorHandler
+import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
+import timber.log.Timber
 
 class SignInViewModel(
     private val signInInteractor: SignInInteractor,
-    private val router: Router
+    private val router: Router,
+    private val errorHandler: ErrorHandler
 ) : ViewModel() {
 
-    val errorMessage: MutableLiveData<String> = MutableLiveData()
+    val errorMessage = MutableLiveData<String>()
 
-    suspend fun onSignInClicked(userCredentials: UserCredentials) {
-        viewModelScope.launch {
-            val signInResult = signInInteractor.signIn(userCredentials)
-            when (signInResult) {
-                is GenericResult.Success -> {
-                    router.replaceScreen(MasterListScreen())
-                    Log.d("SignInViewModel", "Success")
-                }
-                is GenericResult.Error -> {
-                    errorMessage.value = signInResult.throwable.message
-                    Log.d("SignInViewModel", "Error " + signInResult.throwable.message)
-                }
-            }
+    fun onSignInClicked(userCredentials: UserCredentials) {
+        viewModelScope.launchWithHandlers(
+            errorHandler = ::handleError
+        ) {
+            signInInteractor.signIn(userCredentials)
+            router.replaceScreen(MasterListScreen())
         }
     }
 
-    fun onSignUpClicked() = router.navigateTo(SignUpScreen())
+    private fun handleError(throwable: Throwable) {
+        errorMessage.value = errorHandler.getErrorMessage(throwable)
+        Timber.d(throwable)
+    }
+
+    fun onSignUpClicked() {
+        router.navigateTo(SignUpScreen())
+    }
 }

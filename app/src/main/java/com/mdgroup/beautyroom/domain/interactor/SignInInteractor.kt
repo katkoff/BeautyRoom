@@ -1,21 +1,19 @@
 package com.mdgroup.beautyroom.domain.interactor
 
-import com.mdgroup.beautyroom.domain.gateway.SessionGateway
-import com.mdgroup.beautyroom.domain.gateway.SignInGateway
-import com.mdgroup.beautyroom.domain.model.GenericResult
+import com.mdgroup.beautyroom.data.api.BeautyRoomApiService
+import com.mdgroup.beautyroom.data.api.mapper.SignInApiMapper
 import com.mdgroup.beautyroom.domain.model.ServerSession
 import com.mdgroup.beautyroom.domain.model.UserCredentials
 
 class SignInInteractor(
-    private val signInGateway: SignInGateway,
-    private val sessionGateway: SessionGateway
+    private val sessionInteractor: SessionInteractor,
+    private val beautyRoomApiService: BeautyRoomApiService
 ) {
 
-    suspend fun signIn(userCredentials: UserCredentials): GenericResult<Unit> {
-        return signInGateway.signIn(userCredentials)
-            .flatMap {
-                sessionGateway.serverSession = ServerSession(it)
-                GenericResult.empty()
-            }
+    suspend fun signIn(userCredentials: UserCredentials) {
+        val signInRequestApiModel = SignInApiMapper.mapToApi(userCredentials)
+        val signInResultApiModel = beautyRoomApiService.signIn(signInRequestApiModel)
+        val sessionCredentials = SignInApiMapper.mapToDomain(signInResultApiModel)
+        sessionInteractor.serverSession = ServerSession(sessionCredentials)
     }
 }

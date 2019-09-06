@@ -25,8 +25,7 @@ class SignUpViewModel(
             ::handleProgress,
             ::handleError
         ) {
-            val serverSessionCredentials = signUpInteractor.signUp(userRegInfo)
-            signUpInteractor.saveToken(serverSessionCredentials)
+            signUpInteractor.signUp(userRegInfo)
             router.replaceScreen(MasterListScreen())
         }
     }
