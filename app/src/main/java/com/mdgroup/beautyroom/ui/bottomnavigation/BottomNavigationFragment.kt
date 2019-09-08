@@ -29,6 +29,15 @@ class BottomNavigationFragment : Fragment(R.layout.fragment_bottom_navigation) {
     private fun bindViewModel() {
         bind(bottomNavigationViewModel.currentScreen) {
             selectTab(it)
+            showSelectedTab(it)
+        }
+    }
+
+    private fun showSelectedTab(selectedScreen: SupportAppScreen) {
+        bottomNavigationView.selectedItemId = when (selectedScreen) {
+            masterListScreen -> R.id.masters_menu_item
+            appointmentListScreen -> R.id.appointments_menu_item
+            else -> R.id.masters_menu_item
         }
     }
 
@@ -37,6 +46,7 @@ class BottomNavigationFragment : Fragment(R.layout.fragment_bottom_navigation) {
             bottomNavigationViewModel.onNavigationItemSelected(menuItem.itemId)
             true
         }
+        bottomNavigationView.setOnNavigationItemReselectedListener { }
     }
 
     private fun selectCurrentTab() {

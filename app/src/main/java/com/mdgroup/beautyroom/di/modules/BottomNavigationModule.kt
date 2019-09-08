@@ -5,5 +5,10 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val bottomNavigationModule = module {
-    viewModel { BottomNavigationViewModel() }
+    viewModel {
+        BottomNavigationViewModel(
+            sessionInteractor = get(),
+            router = get()
+        )
+    }
 }

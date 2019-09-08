@@ -3,17 +3,32 @@ package com.mdgroup.beautyroom.ui.bottomnavigation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mdgroup.beautyroom.R
+import com.mdgroup.beautyroom.domain.interactor.SessionInteractor
+import com.mdgroup.beautyroom.navigation.SignInScreen
+import com.mdgroup.beautyroom.ui.bottomnavigation.BottomNavigationScreens.appointmentListScreen
+import com.mdgroup.beautyroom.ui.bottomnavigation.BottomNavigationScreens.masterListScreen
+import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
-class BottomNavigationViewModel : ViewModel() {
+class BottomNavigationViewModel(
+    private val sessionInteractor: SessionInteractor,
+    private val router: Router
+) : ViewModel() {
 
     val currentScreen = MutableLiveData<SupportAppScreen>()
 
     fun onNavigationItemSelected(itemId: Int) {
-        currentScreen.value = when (itemId) {
-            R.id.masters_menu_item -> BottomNavigationScreens.masterListScreen
-            R.id.appointments_menu_item -> BottomNavigationScreens.appointmentListScreen
-            else -> BottomNavigationScreens.masterListScreen
+        when (itemId) {
+            R.id.masters_menu_item -> currentScreen.value = masterListScreen
+            R.id.appointments_menu_item -> {
+                if (sessionInteractor.isSignedIn()) {
+                    currentScreen.value = appointmentListScreen
+                } else {
+                    currentScreen.value = masterListScreen
+                    router.navigateTo(SignInScreen())
+                }
+            }
+            else -> currentScreen.value = masterListScreen
         }
     }
 }
