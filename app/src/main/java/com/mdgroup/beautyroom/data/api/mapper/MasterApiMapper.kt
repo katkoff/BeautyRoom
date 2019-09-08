@@ -2,11 +2,11 @@ package com.mdgroup.beautyroom.data.api.mapper
 
 import com.mdgroup.beautyroom.data.api.model.MasterApiModel
 import com.mdgroup.beautyroom.data.api.model.MasterApiResponseModel
-import com.mdgroup.beautyroom.domain.model.MasterModel
+import com.mdgroup.beautyroom.domain.model.Master
 
 object MasterApiMapper {
 
-    fun mapApiMasterListToDomain(masterApiResponseModel: MasterApiResponseModel): List<MasterModel> {
+    fun mapApiMasterListToDomain(masterApiResponseModel: MasterApiResponseModel): List<Master> {
         val masters = masterApiResponseModel.masters
         return if (masters.isEmpty()) {
             emptyList()
@@ -15,7 +15,7 @@ object MasterApiMapper {
         }
     }
 
-    private fun mapApiMasterModelToDomain(masterApiModel: MasterApiModel) = MasterModel(
+    private fun mapApiMasterModelToDomain(masterApiModel: MasterApiModel) = Master(
         id = masterApiModel.id,
         firstName = masterApiModel.firstName.orEmpty(),
         lastName = masterApiModel.lastName.orEmpty(),

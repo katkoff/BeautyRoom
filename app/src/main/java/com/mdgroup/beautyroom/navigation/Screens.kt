@@ -2,6 +2,7 @@ package com.mdgroup.beautyroom.navigation
 
 import androidx.fragment.app.Fragment
 import com.mdgroup.beautyroom.ui.bottomnavigation.BottomNavigationFragment
+import com.mdgroup.beautyroom.ui.master.details.MasterDetailsFragment
 import com.mdgroup.beautyroom.ui.master.list.MasterListFragment
 import com.mdgroup.beautyroom.ui.signin.SignInFragment
 import com.mdgroup.beautyroom.ui.signup.SignUpFragment
@@ -22,6 +23,12 @@ class BottomNavigationScreen : SupportAppScreen() {
 
 class MasterListScreen : SupportAppScreen() {
     override fun getFragment() = MasterListFragment.newInstance()
+}
+
+class MasterDetailsScreen(
+    private val masterId: String
+) : SupportAppScreen() {
+    override fun getFragment(): Fragment = MasterDetailsFragment.newInstance(masterId)
 }
 
 class StubScreen : SupportAppScreen() {

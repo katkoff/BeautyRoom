@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.domain.interactor.MastersInteractor
 import com.mdgroup.beautyroom.domain.interactor.SessionInteractor
-import com.mdgroup.beautyroom.domain.model.MasterModel
+import com.mdgroup.beautyroom.domain.model.Master
+import com.mdgroup.beautyroom.navigation.MasterDetailsScreen
 import com.mdgroup.beautyroom.navigation.SignInScreen
-import com.mdgroup.beautyroom.navigation.StubScreen
 import com.mdgroup.beautyroom.ui.ErrorHandler
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
@@ -20,7 +20,7 @@ class MasterListViewModel(
     private val errorHandler: ErrorHandler
 ) : ViewModel() {
 
-    val masterList = MutableLiveData<List<MasterModel>>()
+    val masterList = MutableLiveData<List<Master>>()
     val errorMessage = MutableLiveData<String>()
     val isProgress = MutableLiveData<Boolean>()
 
@@ -44,7 +44,7 @@ class MasterListViewModel(
 
     fun onMasterClicked(masterId: String) {
         if (sessionInteractor.isSignedIn()) {
-            router.navigateTo(StubScreen())
+            router.navigateTo(MasterDetailsScreen(masterId))
         } else {
             router.navigateTo(SignInScreen())
         }

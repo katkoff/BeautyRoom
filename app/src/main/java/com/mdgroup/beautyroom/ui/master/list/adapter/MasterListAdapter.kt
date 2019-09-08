@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mdgroup.beautyroom.R
-import com.mdgroup.beautyroom.domain.model.MasterModel
+import com.mdgroup.beautyroom.domain.model.Master
 
 class MasterListAdapter (
     private val onItemClicked: (String) -> Unit
 ) : RecyclerView.Adapter<MasterListItemViewHolder>() {
 
-    private var itemList = mutableListOf<MasterModel>()
+    private var itemList = mutableListOf<Master>()
 
-    fun setData(newItemList: List<MasterModel>) {
+    fun setData(newItemList: List<Master>) {
         itemList.clear()
         itemList.addAll(newItemList)
         notifyDataSetChanged()
