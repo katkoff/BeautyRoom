@@ -4,7 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.domain.interactor.MastersInteractor
+import com.mdgroup.beautyroom.domain.interactor.SessionInteractor
 import com.mdgroup.beautyroom.domain.model.MasterModel
+import com.mdgroup.beautyroom.navigation.SignInScreen
+import com.mdgroup.beautyroom.navigation.StubScreen
 import com.mdgroup.beautyroom.ui.ErrorHandler
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
@@ -12,6 +15,7 @@ import timber.log.Timber
 
 class MasterListViewModel(
     private val mastersInteractor: MastersInteractor,
+    private val sessionInteractor: SessionInteractor,
     private val router: Router,
     private val errorHandler: ErrorHandler
 ) : ViewModel() {
@@ -36,5 +40,13 @@ class MasterListViewModel(
     private fun handleError(throwable: Throwable) {
         errorMessage.value = errorHandler.getErrorMessage(throwable)
         Timber.d(throwable)
+    }
+
+    fun onMasterClicked(masterId: String) {
+        if (sessionInteractor.isSignedIn()) {
+            router.navigateTo(StubScreen())
+        } else {
+            router.navigateTo(SignInScreen())
+        }
     }
 }

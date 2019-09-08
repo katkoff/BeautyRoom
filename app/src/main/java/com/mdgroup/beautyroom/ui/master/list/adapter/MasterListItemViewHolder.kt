@@ -9,10 +9,12 @@ import kotlinx.android.synthetic.main.item_master_list.*
 class MasterListItemViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
     LayoutContainer {
 
-    fun bind(masterModel: MasterModel) {
+    fun bind(masterModel: MasterModel, onItemClicked: (String) -> Unit) {
         textView_firstName.text = masterModel.firstName
         textView_lastName.text = masterModel.lastName
         textView_phone.text = masterModel.mobilePhone
         textView_info.text = masterModel.information
+
+        itemView.setOnClickListener { onItemClicked.invoke(masterModel.id) }
     }
 }

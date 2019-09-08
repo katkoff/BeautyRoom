@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 //TODO: remove null possibility after change response in the server
 data class MasterApiModel(
     @SerializedName("id")
-    val id: Int,
+    val id: String,
     @SerializedName("first_name")
     val firstName: String?,
     @SerializedName("last_name")

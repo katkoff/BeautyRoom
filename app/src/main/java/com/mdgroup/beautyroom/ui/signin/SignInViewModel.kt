@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
 import com.mdgroup.beautyroom.domain.model.UserCredentials
-import com.mdgroup.beautyroom.navigation.MasterListScreen
 import com.mdgroup.beautyroom.navigation.SignUpScreen
 import com.mdgroup.beautyroom.ui.ErrorHandler
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
@@ -25,7 +24,7 @@ class SignInViewModel(
             errorHandler = ::handleError
         ) {
             signInInteractor.signIn(userCredentials)
-            router.replaceScreen(MasterListScreen())
+            router.exit()
         }
     }
 

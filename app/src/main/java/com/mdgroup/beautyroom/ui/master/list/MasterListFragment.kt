@@ -37,7 +37,9 @@ class MasterListFragment : Fragment(R.layout.fragment_master_list) {
     }
 
     private fun initRecycler() {
-        masterListAdapter = MasterListAdapter()
+        masterListAdapter = MasterListAdapter {
+            masterListViewModel.onMasterClicked(it)
+        }
         recyclerView.adapter = masterListAdapter
     }
 

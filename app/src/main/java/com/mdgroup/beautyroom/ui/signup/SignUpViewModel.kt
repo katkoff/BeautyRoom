@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.domain.interactor.SignUpInteractor
 import com.mdgroup.beautyroom.domain.model.UserRegInfo
-import com.mdgroup.beautyroom.navigation.MasterListScreen
 import com.mdgroup.beautyroom.ui.ErrorHandler
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
@@ -26,7 +25,7 @@ class SignUpViewModel(
             ::handleError
         ) {
             signUpInteractor.signUp(userRegInfo)
-            router.replaceScreen(MasterListScreen())
+            router.exit()
         }
     }
 

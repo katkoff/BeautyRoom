@@ -1,7 +1,7 @@
 package com.mdgroup.beautyroom.domain.model
 
 data class MasterModel(
-    val id: Int,
+    val id: String,
     val firstName: String,
     val lastName: String,
     val mobilePhone: String,

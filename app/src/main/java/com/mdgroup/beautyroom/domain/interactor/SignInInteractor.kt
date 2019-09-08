@@ -13,7 +13,6 @@ class SignInInteractor(
     suspend fun signIn(userCredentials: UserCredentials) {
         val signInRequestApiModel = SignInApiMapper.mapToApi(userCredentials)
         val signInResultApiModel = beautyRoomApiService.signIn(signInRequestApiModel)
-        val sessionCredentials = SignInApiMapper.mapToDomain(signInResultApiModel)
-        sessionInteractor.serverSession = ServerSession(sessionCredentials)
+        sessionInteractor.serverSession = ServerSession(signInResultApiModel.token)
     }
 }
