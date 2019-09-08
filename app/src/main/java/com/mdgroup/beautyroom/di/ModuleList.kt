@@ -10,6 +10,8 @@ fun allModules(appContext: Context): List<Module> = listOf(
 
     domainModule,
 
+    bottomNavigationModule,
+
     signInModule,
     signUpModule,
 
