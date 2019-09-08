@@ -9,7 +9,7 @@ import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.domain.model.UserCredentials
 import com.mdgroup.beautyroom.ui.base.snackbar
 import kotlinx.android.synthetic.main.fragment_sign_in.*
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 

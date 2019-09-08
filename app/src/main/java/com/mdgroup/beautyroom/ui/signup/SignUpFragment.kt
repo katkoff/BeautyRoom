@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_master_list.progressBar
 import kotlinx.android.synthetic.main.fragment_sign_in.inputEditText_password
 import kotlinx.android.synthetic.main.fragment_sign_in.inputEditText_phone
 import kotlinx.android.synthetic.main.fragment_sign_up.*
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 

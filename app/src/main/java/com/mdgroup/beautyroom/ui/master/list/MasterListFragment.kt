@@ -10,7 +10,7 @@ import com.mdgroup.beautyroom.ui.base.bind
 import com.mdgroup.beautyroom.ui.base.snackbar
 import com.mdgroup.beautyroom.ui.master.list.adapter.MasterListAdapter
 import kotlinx.android.synthetic.main.fragment_master_list.*
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MasterListFragment : Fragment(R.layout.fragment_master_list) {
 
