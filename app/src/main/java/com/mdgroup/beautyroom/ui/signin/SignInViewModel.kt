@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
 import com.mdgroup.beautyroom.domain.model.UserCredentials
 import com.mdgroup.beautyroom.navigation.SignUpScreen
-import com.mdgroup.beautyroom.ui.ErrorHandler
+import com.mdgroup.beautyroom.data.api.ErrorHandler
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
 import timber.log.Timber

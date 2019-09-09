@@ -8,7 +8,7 @@ import com.mdgroup.beautyroom.domain.interactor.SessionInteractor
 import com.mdgroup.beautyroom.domain.model.Master
 import com.mdgroup.beautyroom.navigation.MasterDetailsScreen
 import com.mdgroup.beautyroom.navigation.SignInScreen
-import com.mdgroup.beautyroom.ui.ErrorHandler
+import com.mdgroup.beautyroom.data.api.ErrorHandler
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
 import timber.log.Timber

@@ -1,5 +1,6 @@
 package com.mdgroup.beautyroom.di.modules
 
+import com.google.gson.Gson
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.mdgroup.beautyroom.data.api.BeautyRoomApiService
 import okhttp3.OkHttpClient
@@ -29,4 +30,6 @@ val dataModule = module {
     }
 
     single { get<Retrofit>().create(BeautyRoomApiService::class.java) }
+
+    single { Gson() }
 }
