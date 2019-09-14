@@ -6,10 +6,21 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val mastersModule = module {
-    viewModel { MasterListViewModel(get(), get(), get(), get()) }
+    viewModel {
+        MasterListViewModel(
+            mastersInteractor = get(),
+            sessionInteractor = get(),
+            router = get(),
+            errorHandler = get()
+        )
+    }
+
     viewModel { (masterId: String) ->
         MasterDetailsViewModel(
+            errorHandler = get(),
+            mastersInteractor = get(),
             router = get(),
-            masterId = masterId)
+            masterId = masterId
+        )
     }
 }

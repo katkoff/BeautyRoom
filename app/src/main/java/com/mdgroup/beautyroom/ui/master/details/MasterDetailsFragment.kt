@@ -3,10 +3,12 @@ package com.mdgroup.beautyroom.ui.master.details
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.ui.base.bind
+import com.mdgroup.beautyroom.ui.base.snackbar
 import kotlinx.android.synthetic.main.fragment_master_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -35,6 +37,12 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
                 .into(image_view_avatar)
             text_view_name.text = "${master.firstName} ${master.lastName} ${master.id}"
             text_view_description.text = master.information
+        }
+        bind(masterDetailsViewModel.errorMessage) {
+            snackbar(it)
+        }
+        bind(masterDetailsViewModel.isProgress) {
+            progressbar.isVisible = it
         }
     }
 

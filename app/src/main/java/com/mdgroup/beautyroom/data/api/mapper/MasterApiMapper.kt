@@ -15,7 +15,7 @@ object MasterApiMapper {
         }
     }
 
-    private fun mapApiMasterModelToDomain(masterApiModel: MasterApiModel) = Master(
+    fun mapApiMasterModelToDomain(masterApiModel: MasterApiModel) = Master(
         id = masterApiModel.id,
         firstName = masterApiModel.firstName.orEmpty(),
         lastName = masterApiModel.lastName.orEmpty(),
