@@ -21,6 +21,9 @@ class MasterDetailsViewModel(
     val errorMessage = MutableLiveData<String>()
     val master = MutableLiveData<Master>()
 
+    //TODO: remove after implement schedule
+    val onClickMessage = MutableLiveData<String>()
+
     init {
         viewModelScope.launchWithHandlers(
             ::handleProgress,
@@ -41,5 +44,9 @@ class MasterDetailsViewModel(
 
     fun onBackPressed() {
         router.exit()
+    }
+
+    fun onServiceClicked(serviceId: Int) {
+        onClickMessage.value = "You click on service with $serviceId id! Well done :)"
     }
 }

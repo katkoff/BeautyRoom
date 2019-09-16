@@ -2,6 +2,7 @@ package com.mdgroup.beautyroom.ui.master.details
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -9,8 +10,10 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import com.mdgroup.beautyroom.R
+import com.mdgroup.beautyroom.domain.model.Service
 import com.mdgroup.beautyroom.ui.base.bind
 import com.mdgroup.beautyroom.ui.base.snackbar
+import com.mdgroup.beautyroom.ui.master.details.servicelist.adapter.ServiceListAdapter
 import kotlinx.android.synthetic.main.fragment_master_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -46,6 +49,8 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
             textView_phone.text = master.mobilePhone.ifEmpty { getString(R.string.unknown_placeholder) }
             textView_email.text = master.email.ifEmpty { getString(R.string.unknown_placeholder) }
             textView_address.text = master.address.ifEmpty { getString(R.string.unknown_placeholder) }
+
+            initServicesRecycler(master.services)
         }
         bind(masterDetailsViewModel.errorMessage) {
             snackbar(it)
@@ -53,6 +58,20 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
         bind(masterDetailsViewModel.isProgress) {
             progressbar.isVisible = it
         }
+
+        //TODO: remove after implement schedule
+        bind(masterDetailsViewModel.onClickMessage) {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun initServicesRecycler(services: List<Service>) {
+        val serviceListAdapter = ServiceListAdapter {
+            masterDetailsViewModel.onServiceClicked(it)
+        }
+        recyclerView_cervices.adapter = serviceListAdapter
+
+        serviceListAdapter.setData(services)
     }
 
     private fun initToolbar() {
