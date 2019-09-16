@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.domain.model.Master
 
-class MasterListAdapter (
-    private val onItemClicked: (String) -> Unit
+class MasterListAdapter(
+    private val onItemClicked: (Int) -> Unit
 ) : RecyclerView.Adapter<MasterListItemViewHolder>() {
 
     private var itemList = mutableListOf<Master>()

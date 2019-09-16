@@ -3,12 +3,12 @@ package com.mdgroup.beautyroom.ui.master.list
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mdgroup.beautyroom.data.api.ErrorHandler
 import com.mdgroup.beautyroom.domain.interactor.MastersInteractor
 import com.mdgroup.beautyroom.domain.interactor.SessionInteractor
 import com.mdgroup.beautyroom.domain.model.Master
 import com.mdgroup.beautyroom.navigation.MasterDetailsScreen
 import com.mdgroup.beautyroom.navigation.SignInScreen
-import com.mdgroup.beautyroom.data.api.ErrorHandler
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
@@ -42,7 +42,7 @@ class MasterListViewModel(
         Timber.d(throwable)
     }
 
-    fun onMasterClicked(masterId: String) {
+    fun onMasterClicked(masterId: Int) {
         if (sessionInteractor.isSignedIn()) {
             router.navigateTo(MasterDetailsScreen(masterId))
         } else {

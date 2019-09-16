@@ -15,7 +15,7 @@ val mastersModule = module {
         )
     }
 
-    viewModel { (masterId: String) ->
+    viewModel { (masterId: Int) ->
         MasterDetailsViewModel(
             errorHandler = get(),
             mastersInteractor = get(),

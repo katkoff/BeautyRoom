@@ -26,7 +26,7 @@ class MasterListScreen : SupportAppScreen() {
 }
 
 class MasterDetailsScreen(
-    private val masterId: String
+    private val masterId: Int
 ) : SupportAppScreen() {
     override fun getFragment(): Fragment = MasterDetailsFragment.newInstance(masterId)
 }

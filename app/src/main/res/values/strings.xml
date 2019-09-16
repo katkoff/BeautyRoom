@@ -1,6 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
     <string name="app_name">BeautyRoom</string>
 
+    <!-- Common needs -->
+    <string name="unknown_placeholder">Неизвестно</string>
+
     <!-- Login -->
     <string name="sign_in_phone_hint">Введите номер телефона</string>
     <string name="sign_in_password_hint">Введите пароль</string>

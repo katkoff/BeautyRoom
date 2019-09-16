@@ -22,5 +22,5 @@ interface BeautyRoomApiService {
     suspend fun getMasters(): MasterApiResponseModel
 
     @GET("masters/{id}/profile")
-    suspend fun getMasterDetails(@Path("id") id: String): MasterApiModel
+    suspend fun getMasterDetails(@Path("id") id: Int): MasterApiModel
 }

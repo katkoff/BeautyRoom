@@ -14,7 +14,7 @@ class MasterDetailsViewModel(
     private val errorHandler: ErrorHandler,
     private val mastersInteractor: MastersInteractor,
     private val router: Router,
-    private val masterId: String
+    private val masterId: Int
 ) : ViewModel() {
 
     val isProgress = MutableLiveData<Boolean>()
