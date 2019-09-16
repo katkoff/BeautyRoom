@@ -24,7 +24,7 @@ object MasterApiMapper {
         lastName = masterApiModel.lastName,
         mobilePhone = masterApiModel.mobilePhone,
         information = masterApiModel.information,
-        photo = masterApiModel.avatarUrl,
+        avatarUrl = masterApiModel.avatarUrl,
         address = masterApiModel.address,
         email = masterApiModel.email,
         socialNetworks = SocialNetworks(instagram = masterApiModel.socialNetworks.instagram),

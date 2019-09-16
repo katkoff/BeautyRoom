@@ -29,7 +29,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="390dp"
                     android:background="@color/cyan"
                     android:orientation="vertical">
 
@@ -91,7 +91,7 @@
                         <TextView
                             android:id="@+id/textView_phone"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:drawablePadding="8dp"
                             android:gravity="center_vertical"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
@@ -101,13 +101,53 @@
                         <TextView
                             android:id="@+id/textView_email"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:drawablePadding="8dp"
                             android:gravity="center_vertical"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                             app:drawableStartCompat="@drawable/ic_email_24dp"
                             tools:text="someemail@gmail.com" />
+
+                        <TextView
+                            android:id="@+id/textView_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            app:drawableStartCompat="@drawable/ic_address_24dp"
+                            tools:text="address" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                style="@style/SocialImageVew"
+                                android:src="@drawable/ic_telegram" />
+
+                            <ImageView
+                                style="@style/SocialImageVew"
+                                android:src="@drawable/ic_whatsapp" />
+
+                            <ImageView
+                                style="@style/SocialImageVew"
+                                android:src="@drawable/ic_instagram" />
+
+                            <ImageView
+                                style="@style/SocialImageVew"
+                                android:src="@drawable/ic_facebook" />
+
+                            <ImageView
+                                style="@style/SocialImageVew"
+                                android:src="@drawable/ic_vk" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 

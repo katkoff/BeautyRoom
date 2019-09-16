@@ -37,7 +37,7 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
     private fun bindViewModel() {
         bind(masterDetailsViewModel.master) { master ->
             Glide.with(this@MasterDetailsFragment)
-                .load(master.photo)
+                .load(master.avatarUrl)
                 .placeholder(R.drawable.avatar_placeholder)
                 .into(imageView_avatar)
             textView_name.text = "${master.firstName} ${master.lastName} ${master.id}"
@@ -45,6 +45,7 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
 
             textView_phone.text = master.mobilePhone.ifEmpty { getString(R.string.unknown_placeholder) }
             textView_email.text = master.email.ifEmpty { getString(R.string.unknown_placeholder) }
+            textView_address.text = master.address.ifEmpty { getString(R.string.unknown_placeholder) }
         }
         bind(masterDetailsViewModel.errorMessage) {
             snackbar(it)

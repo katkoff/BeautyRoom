@@ -7,7 +7,7 @@ data class Master(
     val lastName: String,
     val mobilePhone: String,
     val information: String,
-    val photo: String,
+    val avatarUrl: String,
     val address: String,
     val email: String,
     val socialNetworks: SocialNetworks,
