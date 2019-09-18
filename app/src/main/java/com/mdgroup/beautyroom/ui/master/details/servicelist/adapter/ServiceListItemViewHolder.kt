@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.item_service_list.*
 class ServiceListItemViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
     LayoutContainer {
 
-    fun bind(service: Service, onItemClicked: (Int) -> Unit) {
+    fun bind(service: Service, onItemClicked: (Int, String) -> Unit) {
         textView_serviceName.text = service.name.ifEmpty {
             itemView.resources.getString(R.string.unknown_placeholder)
         }
@@ -20,6 +20,6 @@ class ServiceListItemViewHolder(override val containerView: View) : RecyclerView
         textView_servicePrice.text = service.price.toString()
         textView_serviceDuration.text = service.duration.toString()
 
-        itemView.setOnClickListener { onItemClicked.invoke(service.id) }
+        itemView.setOnClickListener { onItemClicked.invoke(service.id, service.name) }
     }
 }

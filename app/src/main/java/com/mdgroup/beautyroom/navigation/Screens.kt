@@ -37,7 +37,8 @@ class StubScreen : SupportAppScreen() {
 }
 
 class ScheduleScreen(
-    private val serviceId: Int
+    private val masterId: Int,
+    private val serviceName: String
 ) : SupportAppScreen() {
-    override fun getFragment(): Fragment = ScheduleFragment.newInstance(serviceId)
+    override fun getFragment(): Fragment = ScheduleFragment.newInstance(masterId, serviceName)
 }

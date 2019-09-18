@@ -22,9 +22,6 @@ class MasterDetailsViewModel(
     val errorMessage = MutableLiveData<String>()
     val master = MutableLiveData<Master>()
 
-    //TODO: remove after implement schedule
-    val onClickMessage = MutableLiveData<String>()
-
     init {
         viewModelScope.launchWithHandlers(
             ::handleProgress,
@@ -47,8 +44,7 @@ class MasterDetailsViewModel(
         router.exit()
     }
 
-    fun onServiceClicked(serviceId: Int) {
-      router.navigateTo(ScheduleScreen(serviceId))
-        onClickMessage.value = "You click on service with $serviceId id! Well done :)"
+    fun onServiceClicked(masterId: Int, serviceName: String) {
+      router.navigateTo(ScheduleScreen(masterId, serviceName))
     }
 }

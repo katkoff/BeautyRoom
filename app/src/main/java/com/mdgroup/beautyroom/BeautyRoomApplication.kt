@@ -2,6 +2,7 @@ package com.mdgroup.beautyroom
 
 import android.app.Application
 import com.chibatching.kotpref.Kotpref
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.mdgroup.beautyroom.di.allModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -17,6 +18,7 @@ class BeautyRoomApplication : Application() {
         }
         initDi()
         Kotpref.init(applicationContext)
+        AndroidThreeTen.init(this)
     }
 
     private fun initDi() = startKoin {

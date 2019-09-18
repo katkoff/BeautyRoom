@@ -2,7 +2,6 @@ package com.mdgroup.beautyroom.ui.master.details
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -50,7 +49,7 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
             textView_email.text = master.email.ifEmpty { getString(R.string.unknown_placeholder) }
             textView_address.text = master.address.ifEmpty { getString(R.string.unknown_placeholder) }
 
-            initServicesRecycler(master.services)
+            initServicesRecycler(master.services, masterId)
         }
         bind(masterDetailsViewModel.errorMessage) {
             snackbar(it)
@@ -58,16 +57,11 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
         bind(masterDetailsViewModel.isProgress) {
             progressbar.isVisible = it
         }
-
-        //TODO: remove after implement schedule
-        bind(masterDetailsViewModel.onClickMessage) {
-            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
-        }
     }
 
-    private fun initServicesRecycler(services: List<Service>) {
-        val serviceListAdapter = ServiceListAdapter {
-            masterDetailsViewModel.onServiceClicked(it)
+    private fun initServicesRecycler(services: List<Service>, masterId: Int) {
+        val serviceListAdapter = ServiceListAdapter { serviceId, serviceName ->
+            masterDetailsViewModel.onServiceClicked(masterId, serviceName)
         }
         recyclerView_cervices.adapter = serviceListAdapter
 

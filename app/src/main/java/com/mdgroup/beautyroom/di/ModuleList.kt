@@ -12,9 +12,12 @@ fun allModules(appContext: Context): List<Module> = listOf(
 
     bottomNavigationModule,
 
+    presentationModule(appContext),
+
     signInModule,
     signUpModule,
 
     mastersModule,
-    presentationModule(appContext)
+
+    scheduleViewModel
 )

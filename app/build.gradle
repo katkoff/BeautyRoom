@@ -78,6 +78,9 @@ dependencies {
     // Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.0.1'
 
+    // TreeTen ABP
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+
     // Test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
