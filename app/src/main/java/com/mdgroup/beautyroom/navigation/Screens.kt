@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import com.mdgroup.beautyroom.ui.bottomnavigation.BottomNavigationFragment
 import com.mdgroup.beautyroom.ui.master.details.MasterDetailsFragment
 import com.mdgroup.beautyroom.ui.master.list.MasterListFragment
+import com.mdgroup.beautyroom.ui.schedule.ScheduleFragment
 import com.mdgroup.beautyroom.ui.signin.SignInFragment
 import com.mdgroup.beautyroom.ui.signup.SignUpFragment
 import com.mdgroup.beautyroom.ui.stub.StubFragment
@@ -33,4 +34,10 @@ class MasterDetailsScreen(
 
 class StubScreen : SupportAppScreen() {
     override fun getFragment(): Fragment = StubFragment.newInstance()
+}
+
+class ScheduleScreen(
+    private val serviceId: Int
+) : SupportAppScreen() {
+    override fun getFragment(): Fragment = ScheduleFragment.newInstance(serviceId)
 }

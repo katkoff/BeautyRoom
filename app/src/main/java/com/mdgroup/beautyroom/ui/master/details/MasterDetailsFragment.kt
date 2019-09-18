@@ -97,12 +97,10 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
 
         private const val ARG_MASTER_ID = "ARG_MASTER_ID"
 
-        fun newInstance(masterId: Int): Fragment {
-            return MasterDetailsFragment().apply {
-                arguments = bundleOf(
-                    ARG_MASTER_ID to masterId
-                )
-            }
+        fun newInstance(masterId: Int) = MasterDetailsFragment().apply {
+            arguments = bundleOf(
+                ARG_MASTER_ID to masterId
+            )
         }
     }
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.data.api.ErrorHandler
 import com.mdgroup.beautyroom.domain.interactor.MastersInteractor
 import com.mdgroup.beautyroom.domain.model.Master
+import com.mdgroup.beautyroom.navigation.ScheduleScreen
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
@@ -47,6 +48,7 @@ class MasterDetailsViewModel(
     }
 
     fun onServiceClicked(serviceId: Int) {
+      router.navigateTo(ScheduleScreen(serviceId))
         onClickMessage.value = "You click on service with $serviceId id! Well done :)"
     }
 }
