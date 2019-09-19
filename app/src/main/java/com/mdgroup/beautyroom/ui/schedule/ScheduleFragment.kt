@@ -13,6 +13,7 @@ import com.mdgroup.beautyroom.ui.schedule.adapter.ScheduleAdapter
 import kotlinx.android.synthetic.main.fragment_schedule.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import org.threeten.bp.LocalDate
 
 class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
 
@@ -30,6 +31,7 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
         bindViewModel()
         initRecycler()
         initToolbar()
+        initCalendar()
     }
 
     private fun bindViewModel() {
@@ -37,11 +39,22 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
             snackbar(it)
         }
         bind(scheduleViewModel.isProgress) {
-            //            progressBar.isVisible = it
+            //TODO: uncomment after will implemented the server request
+            // progressBar.isVisible = it
             progressbar.isVisible = false
         }
         bind(scheduleViewModel.timeBlockList) {
             scheduleAdapter.setData(it)
+        }
+
+        bind(scheduleViewModel.clickedDate) {
+            Toast.makeText(context, "You clicked at $it", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun initCalendar() {
+        calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            scheduleViewModel.onDateChangeClicked(LocalDate.of(year, month, dayOfMonth))
         }
     }
 
@@ -52,7 +65,7 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
 
     private fun initRecycler() {
         scheduleAdapter = ScheduleAdapter {
-            Toast.makeText(context, "YOU'RE BREATHTAKING :) !!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "YOU'RE BREATHTAKING :) !!!", Toast.LENGTH_SHORT).show()
         }
         recyclerView_schedule.adapter = scheduleAdapter
     }
