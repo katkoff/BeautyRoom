@@ -14,14 +14,15 @@ import timber.log.Timber
 class ScheduleViewModel(
     private val sessionInteractor: SessionInteractor,
     private val router: Router,
-    private val errorHandler: ErrorHandler
+    private val errorHandler: ErrorHandler,
+    private val masterId: Int
 ) : ViewModel() {
 
     val timeBlockList = MutableLiveData<List<TimeBlock>>()
     val errorMessage = MutableLiveData<String>()
     val isProgress = MutableLiveData<Boolean>()
 
-    fun loadSchedule(masterId: Int) {
+    fun loadSchedule() {
         viewModelScope.launchWithHandlers(
             ::handleProgress,
             ::handleError

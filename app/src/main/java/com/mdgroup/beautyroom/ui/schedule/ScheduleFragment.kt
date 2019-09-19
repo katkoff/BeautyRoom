@@ -12,10 +12,16 @@ import com.mdgroup.beautyroom.ui.base.snackbar
 import com.mdgroup.beautyroom.ui.schedule.adapter.ScheduleAdapter
 import kotlinx.android.synthetic.main.fragment_schedule.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
 
-    private val scheduleViewModel: ScheduleViewModel by viewModel()
+    private val masterId: Int by lazy {
+        arguments?.getInt(ARG_MASTER_ID, -1) ?: -1
+    }
+    private val scheduleViewModel: ScheduleViewModel by viewModel {
+        parametersOf(masterId)
+    }
     private lateinit var scheduleAdapter: ScheduleAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,7 +52,7 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
 
     private fun initRecycler() {
         scheduleAdapter = ScheduleAdapter {
-            Toast.makeText(context, "AAA CLICKED !!! YOU'RE BREATHTAKING :) !!!", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "YOU'RE BREATHTAKING :) !!!", Toast.LENGTH_LONG).show()
         }
         recyclerView_schedule.adapter = scheduleAdapter
     }
@@ -54,7 +60,7 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
     override fun onResume() {
         super.onResume()
 
-        scheduleViewModel.loadSchedule(arguments?.getInt(ARG_MASTER_ID, -1) ?: -1)
+        scheduleViewModel.loadSchedule()
     }
 
     companion object {

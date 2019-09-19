@@ -1,7 +1,10 @@
 package com.mdgroup.beautyroom.ui.schedule.adapter
 
 import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.domain.model.TimeBlock
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_time_block_list.*
@@ -15,6 +18,12 @@ class ScheduleViewHolder(override val containerView: View) : RecyclerView.ViewHo
         textView_time.text = "$hour : $minute"
 
         itemView.isEnabled = timeBlock.isEnable
+        if (!timeBlock.isEnable) {
+            cardView_itemTime.setCardBackgroundColor(ContextCompat.getColor(itemView.context, R.color.grayDisabled))
+        } else {
+            cardView_itemTime.setCardBackgroundColor(ContextCompat.getColor(itemView.context, R.color.white))
+        }
+        imageView_arrowRight.isVisible = timeBlock.isEnable
 
         itemView.setOnClickListener { onItemClicked.invoke(5) }
     }
