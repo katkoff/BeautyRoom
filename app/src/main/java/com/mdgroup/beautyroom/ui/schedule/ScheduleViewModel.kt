@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.data.api.ErrorHandler
 import com.mdgroup.beautyroom.domain.interactor.SessionInteractor
 import com.mdgroup.beautyroom.domain.model.TimeBlock
+import com.mdgroup.beautyroom.ui.base.SingleLiveEvent
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
@@ -22,6 +23,7 @@ class ScheduleViewModel(
     val errorMessage = MutableLiveData<String>()
     val isProgress = MutableLiveData<Boolean>()
     val timeBlockList = MutableLiveData<List<TimeBlock>>()
+    val appointmentAlert = SingleLiveEvent<Unit>()
 
     val clickedDate = MutableLiveData<LocalDate>()
 
@@ -56,10 +58,10 @@ class ScheduleViewModel(
     }
 
     fun onDateChangeClicked(localDateClicked: LocalDate) {
-//        val instantClicked  = Instant.ofEpochMilli(instantMillisecondsClicked)
-//        val systemDefaultZoneId = ZoneId.systemDefault()
-//        val localDate = instantClicked.atZone(systemDefaultZoneId).toLocalDate()
-
         clickedDate.value = localDateClicked
+    }
+
+    fun onTimeBlockClicked() {
+        appointmentAlert.call()
     }
 }

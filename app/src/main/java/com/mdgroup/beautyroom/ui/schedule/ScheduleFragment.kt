@@ -46,6 +46,9 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
         bind(scheduleViewModel.timeBlockList) {
             scheduleAdapter.setData(it)
         }
+        bind(scheduleViewModel.appointmentAlert) {
+            Toast.makeText(context, "sdfsdfs", Toast.LENGTH_SHORT).show()
+        }
 
         bind(scheduleViewModel.clickedDate) {
             Toast.makeText(context, "You clicked at $it", Toast.LENGTH_SHORT).show()
@@ -54,7 +57,7 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
 
     private fun initCalendar() {
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            scheduleViewModel.onDateChangeClicked(LocalDate.of(year, month, dayOfMonth))
+            scheduleViewModel.onDateChangeClicked(LocalDate.of(year, month + 1, dayOfMonth))
         }
     }
 
@@ -65,7 +68,9 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
 
     private fun initRecycler() {
         scheduleAdapter = ScheduleAdapter {
-            Toast.makeText(context, "YOU'RE BREATHTAKING :) !!!", Toast.LENGTH_SHORT).show()
+            scheduleViewModel.onTimeBlockClicked()
+
+//            Toast.makeText(context, "YOU'RE BREATHTAKING :) !!!", Toast.LENGTH_SHORT).show()
         }
         recyclerView_schedule.adapter = scheduleAdapter
     }
