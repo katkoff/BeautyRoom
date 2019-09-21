@@ -1,7 +1,10 @@
 package com.mdgroup.beautyroom.data.api.model
 
+import com.google.gson.annotations.SerializedName
+
 data class TimeBlockApiModel(
+    @SerializedName("startTime")
     val startTime: String,
-    val duration: Int,
+    @SerializedName("isEnable")
     val isEnable: Boolean
 )

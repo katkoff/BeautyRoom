@@ -1,10 +1,7 @@
 package com.mdgroup.beautyroom.data.api
 
 import com.mdgroup.beautyroom.data.api.model.*
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface BeautyRoomApiService {
 
@@ -23,4 +20,10 @@ interface BeautyRoomApiService {
 
     @GET("masters/{id}/profile")
     suspend fun getMasterDetails(@Path("id") id: Int): MasterApiModel
+
+    @GET("masters/{id}/schedule")
+    suspend fun getMasterScheduleByDate(
+        @Path("id") id: Int,
+        @Query("date") date: String
+    ): List<TimeBlockApiModel>
 }

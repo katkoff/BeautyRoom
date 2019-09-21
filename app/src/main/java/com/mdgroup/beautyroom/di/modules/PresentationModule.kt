@@ -7,5 +7,10 @@ import org.koin.dsl.module
 
 fun presentationModule(appContext: Context) = module {
     single { appContext.resources }
-    factory { ErrorHandler(resources = get(), gson = get()) }
+    factory {
+        ErrorHandler(
+            resources = get(),
+            gson = get()
+        )
+    }
 }

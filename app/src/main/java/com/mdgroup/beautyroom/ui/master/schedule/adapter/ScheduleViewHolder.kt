@@ -1,4 +1,4 @@
-package com.mdgroup.beautyroom.ui.schedule.adapter
+package com.mdgroup.beautyroom.ui.master.schedule.adapter
 
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -8,14 +8,18 @@ import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.domain.model.TimeBlock
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_time_block_list.*
+import java.text.DecimalFormat
 
 class ScheduleViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
     LayoutContainer {
 
     fun bind(timeBlock: TimeBlock, onItemClicked: (Int) -> Unit) {
-        val hour = timeBlock.startTime.toLocalTime().hour
-        val minute = timeBlock.startTime.toLocalTime().minute
-        textView_time.text = "$hour : $minute"
+        val hour = timeBlock.startTime.hour
+        val minute = timeBlock.startTime.minute
+        val doubleDigitHour = DecimalFormat(DOUBLE_DIGIT_MASK).format(hour)
+        val doubleDigitMinute = DecimalFormat(DOUBLE_DIGIT_MASK).format(minute)
+
+        textView_time.text = "$doubleDigitHour : $doubleDigitMinute"
 
         itemView.isEnabled = timeBlock.isEnable
         if (!timeBlock.isEnable) {
@@ -26,5 +30,9 @@ class ScheduleViewHolder(override val containerView: View) : RecyclerView.ViewHo
         imageView_arrowRight.isVisible = timeBlock.isEnable
 
         itemView.setOnClickListener { onItemClicked.invoke(5) }
+    }
+
+    companion object {
+        private const val DOUBLE_DIGIT_MASK: String = "00"
     }
 }

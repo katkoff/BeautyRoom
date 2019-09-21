@@ -20,7 +20,8 @@ val mastersModule = module {
             errorHandler = get(),
             mastersInteractor = get(),
             router = get(),
-            masterId = masterId
+            masterId = masterId,
+            appointmentStateHolder = get()
         )
     }
 }

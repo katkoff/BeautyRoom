@@ -1,4 +1,4 @@
-package com.mdgroup.beautyroom.data.pref.model
+package com.mdgroup.beautyroom.data.local.pref.model
 
 import com.chibatching.kotpref.KotprefModel
 

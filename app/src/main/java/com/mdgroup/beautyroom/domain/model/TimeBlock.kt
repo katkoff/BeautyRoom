@@ -1,9 +1,8 @@
 package com.mdgroup.beautyroom.domain.model
 
-import org.threeten.bp.LocalDateTime
+import org.threeten.bp.LocalTime
 
 data class TimeBlock(
-    val startTime: LocalDateTime,
-    val duration: Int,
+    val startTime: LocalTime,
     val isEnable: Boolean
 )

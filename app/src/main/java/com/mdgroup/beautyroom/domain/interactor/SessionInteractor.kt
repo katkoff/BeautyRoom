@@ -1,6 +1,6 @@
 package com.mdgroup.beautyroom.domain.interactor
 
-import com.mdgroup.beautyroom.data.pref.model.ServerSessionPrefModel
+import com.mdgroup.beautyroom.data.local.pref.model.ServerSessionPrefModel
 import com.mdgroup.beautyroom.domain.model.ServerSession
 
 

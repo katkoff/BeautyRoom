@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import com.mdgroup.beautyroom.ui.bottomnavigation.BottomNavigationFragment
 import com.mdgroup.beautyroom.ui.master.details.MasterDetailsFragment
 import com.mdgroup.beautyroom.ui.master.list.MasterListFragment
-import com.mdgroup.beautyroom.ui.schedule.ScheduleFragment
+import com.mdgroup.beautyroom.ui.master.schedule.ScheduleFragment
 import com.mdgroup.beautyroom.ui.signin.SignInFragment
 import com.mdgroup.beautyroom.ui.signup.SignUpFragment
 import com.mdgroup.beautyroom.ui.stub.StubFragment

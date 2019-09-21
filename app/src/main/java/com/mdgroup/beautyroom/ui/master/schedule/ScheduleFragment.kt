@@ -1,15 +1,17 @@
-package com.mdgroup.beautyroom.ui.schedule
+package com.mdgroup.beautyroom.ui.master.schedule
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.ui.base.bind
 import com.mdgroup.beautyroom.ui.base.snackbar
-import com.mdgroup.beautyroom.ui.schedule.adapter.ScheduleAdapter
+import com.mdgroup.beautyroom.ui.master.schedule.adapter.ScheduleAdapter
 import kotlinx.android.synthetic.main.fragment_schedule.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -20,9 +22,11 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
     private val masterId: Int by lazy {
         arguments?.getInt(ARG_MASTER_ID, -1) ?: -1
     }
+
     private val scheduleViewModel: ScheduleViewModel by viewModel {
         parametersOf(masterId)
     }
+
     private lateinit var scheduleAdapter: ScheduleAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,20 +43,24 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
             snackbar(it)
         }
         bind(scheduleViewModel.isProgress) {
-            //TODO: uncomment after will implemented the server request
-            // progressBar.isVisible = it
-            progressbar.isVisible = false
+            progressbar.isVisible = it
         }
         bind(scheduleViewModel.timeBlockList) {
             scheduleAdapter.setData(it)
         }
         bind(scheduleViewModel.appointmentAlert) {
-            Toast.makeText(context, "sdfsdfs", Toast.LENGTH_SHORT).show()
+            initBottomSheet()
         }
+    }
 
-        bind(scheduleViewModel.clickedDate) {
-            Toast.makeText(context, "You clicked at $it", Toast.LENGTH_SHORT).show()
-        }
+    private fun initBottomSheet() {
+        val dialog = BottomSheetDialog(activity!!)
+        val sheetView = activity!!.layoutInflater.inflate(R.layout.bottom_sheet_create_appointment, null)
+        dialog.setContentView(sheetView)
+        dialog.show()
+
+        val acceptButton = sheetView.findViewById<Button>(R.id.button_sendAppointment)
+        acceptButton.setOnClickListener { Toast.makeText(context, "sdfsdfs", Toast.LENGTH_SHORT).show() }
     }
 
     private fun initCalendar() {
@@ -69,8 +77,6 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
     private fun initRecycler() {
         scheduleAdapter = ScheduleAdapter {
             scheduleViewModel.onTimeBlockClicked()
-
-//            Toast.makeText(context, "YOU'RE BREATHTAKING :) !!!", Toast.LENGTH_SHORT).show()
         }
         recyclerView_schedule.adapter = scheduleAdapter
     }
@@ -90,8 +96,10 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
             masterId: Int,
             serviceName: String
         ) = ScheduleFragment().apply {
-            arguments = bundleOf(ARG_MASTER_ID to masterId)
-            arguments = bundleOf(ARG_SERVICE_NAME to serviceName)
+            arguments = bundleOf(
+                ARG_MASTER_ID to masterId,
+                ARG_SERVICE_NAME to serviceName
+            )
         }
     }
 }

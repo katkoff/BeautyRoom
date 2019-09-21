@@ -1,4 +1,4 @@
-package com.mdgroup.beautyroom.ui.schedule.adapter
+package com.mdgroup.beautyroom.ui.master.schedule.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

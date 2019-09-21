@@ -106,7 +106,7 @@
                             android:drawablePadding="8dp"
                             android:gravity="center_vertical"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                            app:drawableStartCompat="@drawable/ic_email_24dp"
+                            app:drawableStartCompat="@drawable/ic_email_cyan_dark_24dp"
                             tools:text="someemail@gmail.com" />
 
                         <TextView
@@ -117,7 +117,7 @@
                             android:drawablePadding="8dp"
                             android:gravity="center_vertical"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                            app:drawableStartCompat="@drawable/ic_address_24dp"
+                            app:drawableStartCompat="@drawable/ic_address_cyan_dark_24dp"
                             tools:text="address" />
 
                         <LinearLayout

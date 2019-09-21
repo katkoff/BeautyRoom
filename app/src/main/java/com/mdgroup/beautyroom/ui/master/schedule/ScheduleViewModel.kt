@@ -1,23 +1,24 @@
-package com.mdgroup.beautyroom.ui.schedule
+package com.mdgroup.beautyroom.ui.master.schedule
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.data.api.ErrorHandler
-import com.mdgroup.beautyroom.domain.interactor.SessionInteractor
+import com.mdgroup.beautyroom.data.local.AppointmentStateHolder
+import com.mdgroup.beautyroom.domain.interactor.MastersInteractor
 import com.mdgroup.beautyroom.domain.model.TimeBlock
 import com.mdgroup.beautyroom.ui.base.SingleLiveEvent
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import org.threeten.bp.LocalDate
-import org.threeten.bp.LocalDateTime
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
 
 class ScheduleViewModel(
-    private val sessionInteractor: SessionInteractor,
+    private val mastersInteractor: MastersInteractor,
     private val router: Router,
     private val errorHandler: ErrorHandler,
-    private val masterId: Int
+    private val masterId: Int,
+    private val appointmentStateHolder: AppointmentStateHolder
 ) : ViewModel() {
 
     val errorMessage = MutableLiveData<String>()
@@ -25,21 +26,14 @@ class ScheduleViewModel(
     val timeBlockList = MutableLiveData<List<TimeBlock>>()
     val appointmentAlert = SingleLiveEvent<Unit>()
 
-    val clickedDate = MutableLiveData<LocalDate>()
-
     fun loadSchedule() {
         viewModelScope.launchWithHandlers(
             ::handleProgress,
             ::handleError
         ) {
-            timeBlockList.value = listOf(
-                TimeBlock(LocalDateTime.now(), 60, true),
-                TimeBlock(LocalDateTime.now(), 60, false),
-                TimeBlock(LocalDateTime.now(), 60, true),
-                TimeBlock(LocalDateTime.now(), 60, true),
-                TimeBlock(LocalDateTime.now(), 60, false),
-                TimeBlock(LocalDateTime.now(), 60, false),
-                TimeBlock(LocalDateTime.now(), 60, true)
+            timeBlockList.value = mastersInteractor.getMasterScheduleByDate(
+                masterId,
+                LocalDate.now()
             )
         }
     }
@@ -58,7 +52,15 @@ class ScheduleViewModel(
     }
 
     fun onDateChangeClicked(localDateClicked: LocalDate) {
-        clickedDate.value = localDateClicked
+            viewModelScope.launchWithHandlers(
+                ::handleProgress,
+                ::handleError
+            ) {
+                timeBlockList.value = mastersInteractor.getMasterScheduleByDate(
+                    masterId,
+                    localDateClicked
+                )
+            }
     }
 
     fun onTimeBlockClicked() {
