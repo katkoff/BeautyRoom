@@ -60,8 +60,8 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
     }
 
     private fun initServicesRecycler(services: List<Service>, masterId: Int) {
-        val serviceListAdapter = ServiceListAdapter { serviceId, serviceName ->
-            masterDetailsViewModel.onServiceClicked(masterId, serviceName)
+        val serviceListAdapter = ServiceListAdapter { service ->
+            masterDetailsViewModel.onServiceClicked(masterId, service)
         }
         recyclerView_cervices.adapter = serviceListAdapter
 

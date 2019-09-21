@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.data.api.ErrorHandler
+import com.mdgroup.beautyroom.data.local.AppointmentState
 import com.mdgroup.beautyroom.data.local.AppointmentStateHolder
 import com.mdgroup.beautyroom.domain.interactor.MastersInteractor
 import com.mdgroup.beautyroom.domain.model.TimeBlock
@@ -24,7 +25,7 @@ class ScheduleViewModel(
     val errorMessage = MutableLiveData<String>()
     val isProgress = MutableLiveData<Boolean>()
     val timeBlockList = MutableLiveData<List<TimeBlock>>()
-    val appointmentAlert = SingleLiveEvent<Unit>()
+    val appointmentAlert = SingleLiveEvent<AppointmentState>()
 
     fun loadSchedule() {
         viewModelScope.launchWithHandlers(
@@ -35,6 +36,8 @@ class ScheduleViewModel(
                 masterId,
                 LocalDate.now()
             )
+
+            updateAppointmentState(LocalDate.now())
         }
     }
 
@@ -52,18 +55,28 @@ class ScheduleViewModel(
     }
 
     fun onDateChangeClicked(localDateClicked: LocalDate) {
-            viewModelScope.launchWithHandlers(
-                ::handleProgress,
-                ::handleError
-            ) {
-                timeBlockList.value = mastersInteractor.getMasterScheduleByDate(
-                    masterId,
-                    localDateClicked
-                )
-            }
+        viewModelScope.launchWithHandlers(
+            ::handleProgress,
+            ::handleError
+        ) {
+            timeBlockList.value = mastersInteractor.getMasterScheduleByDate(
+                masterId,
+                localDateClicked
+            )
+
+            updateAppointmentState(localDateClicked)
+        }
     }
 
-    fun onTimeBlockClicked() {
-        appointmentAlert.call()
+    fun onTimeBlockClicked(timeBlock: TimeBlock) {
+        val finallyAppointmentState =
+            appointmentStateHolder.appointmentState!!.copy(appointmentTime = timeBlock.startTime)
+        appointmentStateHolder.appointmentState = finallyAppointmentState
+        appointmentAlert.value = finallyAppointmentState
+    }
+
+    private fun updateAppointmentState(localDate: LocalDate) {
+        val updatedAppointmentState = appointmentStateHolder.appointmentState!!.copy(appointmentDate = localDate)
+        appointmentStateHolder.appointmentState = updatedAppointmentState
     }
 }

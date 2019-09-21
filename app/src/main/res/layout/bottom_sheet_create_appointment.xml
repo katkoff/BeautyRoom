@@ -16,18 +16,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Accept the appointment"
+        android:text="@string/schedule_appointment_title"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Accept the appointment" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView_masterLabel"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/ic_master_cyan_dark_24dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_appointmentTitle" />
@@ -37,7 +36,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:text="Master Name"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_masterLabel"
         app:layout_constraintHorizontal_bias="0"
@@ -60,7 +58,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:text="8246456821"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_masterPhoneLabel"
         app:layout_constraintHorizontal_bias="0"
@@ -83,7 +80,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:text="Address Address Address Address Address Address Address"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_masterAddressLabel"
         app:layout_constraintHorizontal_bias="0"
@@ -96,10 +92,12 @@
         android:id="@+id/cardView_serviceContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:layout_marginTop="16dp"
-        app:cardCornerRadius="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:elevation="4dp"
+        app:cardCornerRadius="4dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_masterAddress">
@@ -113,7 +111,6 @@
                 android:id="@+id/textView_serviceName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Brows"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -134,7 +131,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="1500"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView_servicePriceLabel"
                 app:layout_constraintLeft_toRightOf="@+id/imageView_servicePriceLabel"
@@ -156,7 +152,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="60"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView_serviceDurationLabel"
                 app:layout_constraintLeft_toRightOf="@+id/imageView_serviceDurationLabel"
@@ -164,7 +159,7 @@
                 tools:text="60" />
 
             <ImageView
-                android:id="@+id/imageView_appointmentDateLabel"
+                android:id="@+id/imageView_appointmentDateTimeLabel"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="8dp"
@@ -173,17 +168,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView_servicePriceLabel" />
 
             <TextView
-                android:id="@+id/textView_appointmentDate"
+                android:id="@+id/textView_appointmentDateTime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="12.09.2019 15:00"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView_appointmentDateLabel"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_appointmentDateTimeLabel"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintLeft_toRightOf="@+id/imageView_appointmentDateLabel"
+                app:layout_constraintLeft_toRightOf="@+id/imageView_appointmentDateTimeLabel"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView_appointmentDateLabel"
+                app:layout_constraintTop_toTopOf="@+id/imageView_appointmentDateTimeLabel"
                 tools:text="12.09.2019 15:00" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -195,7 +189,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Send appointment"
+        android:text="@string/schedule_send_button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView_serviceContainer"

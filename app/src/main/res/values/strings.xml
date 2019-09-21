@@ -15,7 +15,9 @@
     <!-- Auth -->
     <string name="sign_up_name_hint">Введите имя</string>
 
-    <!-- Masters -->
+    <!-- Schedule -->
+    <string name="schedule_appointment_title">Подтвердите запись</string>
+    <string name="schedule_send_button">Записаться</string>
 
     <!-- Bottom navigation items -->
     <string name="masters_menu_item">Мастера</string>

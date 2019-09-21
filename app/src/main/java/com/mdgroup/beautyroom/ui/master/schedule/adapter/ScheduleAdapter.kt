@@ -7,7 +7,7 @@ import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.domain.model.TimeBlock
 
 class ScheduleAdapter(
-    private val onItemClicked: (Int) -> Unit
+    private val onItemClicked: (TimeBlock) -> Unit
 ) : RecyclerView.Adapter<ScheduleViewHolder>() {
 
     private var itemList = mutableListOf<TimeBlock>()

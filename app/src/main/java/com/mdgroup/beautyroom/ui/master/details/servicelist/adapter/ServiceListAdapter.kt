@@ -7,7 +7,7 @@ import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.domain.model.Service
 
 class ServiceListAdapter(
-    private val onItemClicked: (Int, String) -> Unit
+    private val onItemClicked: (Service) -> Unit
 ) : RecyclerView.Adapter<ServiceListItemViewHolder>() {
 
     private var itemList = mutableListOf<Service>()

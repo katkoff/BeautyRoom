@@ -13,7 +13,7 @@ import java.text.DecimalFormat
 class ScheduleViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
     LayoutContainer {
 
-    fun bind(timeBlock: TimeBlock, onItemClicked: (Int) -> Unit) {
+    fun bind(timeBlock: TimeBlock, onItemClicked: (TimeBlock) -> Unit) {
         val hour = timeBlock.startTime.hour
         val minute = timeBlock.startTime.minute
         val doubleDigitHour = DecimalFormat(DOUBLE_DIGIT_MASK).format(hour)
@@ -29,7 +29,7 @@ class ScheduleViewHolder(override val containerView: View) : RecyclerView.ViewHo
         }
         imageView_arrowRight.isVisible = timeBlock.isEnable
 
-        itemView.setOnClickListener { onItemClicked.invoke(5) }
+        itemView.setOnClickListener { onItemClicked.invoke(timeBlock) }
     }
 
     companion object {
