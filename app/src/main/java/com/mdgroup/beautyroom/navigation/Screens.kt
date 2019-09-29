@@ -10,8 +10,8 @@ import com.mdgroup.beautyroom.ui.signup.SignUpFragment
 import com.mdgroup.beautyroom.ui.stub.StubFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
-class SignInScreen : SupportAppScreen() {
-    override fun getFragment() = SignInFragment.newInstance()
+class SignInScreen(nextScreen: SupportAppScreen) : SupportAppScreen() {
+    override fun getFragment() = SignInFragment.newInstance(nextScreen)
 }
 
 class SignUpScreen : SupportAppScreen() {

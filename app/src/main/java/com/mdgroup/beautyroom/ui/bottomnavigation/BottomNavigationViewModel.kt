@@ -25,7 +25,7 @@ class BottomNavigationViewModel(
                     currentScreen.value = appointmentListScreen
                 } else {
                     currentScreen.value = masterListScreen
-                    router.navigateTo(SignInScreen())
+                    router.navigateTo(SignInScreen(MasterDetailsScreen()))
                 }
             }
             else -> currentScreen.value = masterListScreen

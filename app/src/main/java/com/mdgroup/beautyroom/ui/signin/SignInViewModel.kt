@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.data.api.ErrorHandler
 import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
 import com.mdgroup.beautyroom.domain.model.UserCredentials
+import com.mdgroup.beautyroom.navigation.BottomNavigationScreen
 import com.mdgroup.beautyroom.navigation.SignUpScreen
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
@@ -28,7 +29,7 @@ class SignInViewModel(
             errorHandler = ::handleError
         ) {
             signInInteractor.signIn(assembleUserCredentials(password))
-            router.exit()
+            router.newRootChain(BottomNavigationScreen())
         }
     }
 
