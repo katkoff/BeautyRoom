@@ -9,7 +9,6 @@ import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.domain.model.UserRegInfo
 import com.mdgroup.beautyroom.ui.base.bind
 import com.mdgroup.beautyroom.ui.base.snackbar
-import kotlinx.android.synthetic.main.fragment_master_list.progressBar
 import kotlinx.android.synthetic.main.fragment_sign_in.inputEditText_password
 import kotlinx.android.synthetic.main.fragment_sign_in.inputEditText_phone
 import kotlinx.android.synthetic.main.fragment_sign_up.*

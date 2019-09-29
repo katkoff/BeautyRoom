@@ -33,13 +33,8 @@ class MasterListViewModel(
         }
     }
 
-    private fun handleProgress(isProgress: Boolean) {
-        this.isProgress.value = isProgress
-    }
-
-    private fun handleError(throwable: Throwable) {
-        errorMessage.value = errorHandler.getErrorMessage(throwable)
-        Timber.d(throwable)
+    fun onRefresh() {
+        loadMasterList()
     }
 
     fun onMasterClicked(masterId: Int) {
@@ -48,5 +43,14 @@ class MasterListViewModel(
         } else {
             router.navigateTo(SignInScreen())
         }
+    }
+
+    private fun handleProgress(isProgress: Boolean) {
+        this.isProgress.value = isProgress
+    }
+
+    private fun handleError(throwable: Throwable) {
+        errorMessage.value = errorHandler.getErrorMessage(throwable)
+        Timber.d(throwable)
     }
 }

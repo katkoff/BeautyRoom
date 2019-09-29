@@ -3,7 +3,6 @@ package com.mdgroup.beautyroom.ui.master.list
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.ui.base.bind
@@ -32,7 +31,7 @@ class MasterListFragment : Fragment(R.layout.fragment_master_list) {
             snackbar(it)
         }
         bind(masterListViewModel.isProgress) {
-            progressBar.isVisible = it
+            swipeRefreshLayout.isRefreshing = it
         }
     }
 
@@ -41,6 +40,8 @@ class MasterListFragment : Fragment(R.layout.fragment_master_list) {
             masterListViewModel.onMasterClicked(it)
         }
         recyclerView.adapter = masterListAdapter
+
+        swipeRefreshLayout.setOnRefreshListener { masterListViewModel.onRefresh() }
     }
 
     override fun onResume() {
