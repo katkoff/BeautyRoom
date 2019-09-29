@@ -37,7 +37,7 @@ class ErrorHandler(
 
         try {
             val errorApiModel = gson.fromJson(responseBody.charStream(), ErrorApiModel::class.java)
-            return errorApiModel.errorMessageApiModel.message
+            return errorApiModel.message
         } catch (e: IOException) {
             Timber.w("Can't read response body")
         } catch (e: JsonSyntaxException) {

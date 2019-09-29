@@ -5,21 +5,21 @@ import com.google.gson.annotations.SerializedName
 data class MasterApiModel(
     @SerializedName("id")
     val id: Int,
-    @SerializedName("first_name")
+    @SerializedName("firstName")
     val firstName: String,
-    @SerializedName("last_name")
+    @SerializedName("lastName")
     val lastName: String,
-    @SerializedName("mobile_phone")
+    @SerializedName("mobilePhone")
     val mobilePhone: String,
     @SerializedName("information")
     val information: String,
-    @SerializedName("avatar_url")
+    @SerializedName("avatarUrl")
     val avatarUrl: String,
     @SerializedName("address")
     val address: String,
     @SerializedName("email")
     val email: String,
-    @SerializedName("social_networks")
+    @SerializedName("socialNetworks")
     val socialNetworks: SocialNetworksApiModel,
     @SerializedName("services")
     val services: List<ServiceApiModel>
