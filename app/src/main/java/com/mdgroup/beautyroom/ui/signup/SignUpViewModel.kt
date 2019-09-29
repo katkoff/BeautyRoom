@@ -17,17 +17,23 @@ class SignUpViewModel(
     private val errorHandler: ErrorHandler
 ) : ViewModel() {
 
-    val errorMessage = MutableLiveData<String>()
     val isProgress = MutableLiveData<Boolean>()
+    val errorMessage = MutableLiveData<String>()
+
+    private var phone = ""
 
     fun onSignUpClicked(userRegInfo: UserRegInfo) {
         viewModelScope.launchWithHandlers(
             ::handleProgress,
             ::handleError
         ) {
-            signUpInteractor.signUp(userRegInfo)
+            signUpInteractor.signUp(userRegInfo.copy(phone = "8$phone"))
             router.newRootChain(MasterListScreen())
         }
+    }
+
+    fun onPhoneChanged(phoneExtractedValue: String) {
+        phone = phoneExtractedValue
     }
 
     private fun handleProgress(isProgress: Boolean) {

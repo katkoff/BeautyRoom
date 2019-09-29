@@ -47,6 +47,9 @@ dependencies {
     // MATERIAL
     implementation "com.google.android.material:material:1.1.0-alpha10"
 
+    // REDMADROBOT INPUTMASK
+    implementation 'com.redmadrobot:input-mask-android:5.0.0'
+
     // ROUTING - CICERONE
     implementation "ru.terrakok.cicerone:cicerone:5.0.0"
 
