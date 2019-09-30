@@ -10,6 +10,7 @@ import com.mdgroup.beautyroom.navigation.BottomNavigationScreen
 import com.mdgroup.beautyroom.navigation.SignUpScreen
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 import timber.log.Timber
 
 class SignInViewModel(
@@ -23,13 +24,15 @@ class SignInViewModel(
 
     private var phone = ""
 
-    fun onSignInClicked(password: String) {
+    fun onSignInClicked(password: String, nextScreen: SupportAppScreen?) {
         viewModelScope.launchWithHandlers(
             progressHandler = ::handleProgress,
             errorHandler = ::handleError
         ) {
+            val notNullNextScreen = nextScreen ?: BottomNavigationScreen()
+
             signInInteractor.signIn(assembleUserCredentials(password))
-            router.newRootChain(BottomNavigationScreen())
+            router.replaceScreen(notNullNextScreen)
         }
     }
 

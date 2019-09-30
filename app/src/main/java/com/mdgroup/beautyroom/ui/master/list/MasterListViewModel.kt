@@ -41,7 +41,7 @@ class MasterListViewModel(
         if (sessionInteractor.isSignedIn()) {
             router.navigateTo(MasterDetailsScreen(masterId))
         } else {
-            router.navigateTo(SignInScreen(MasterDetailsScreen(masterId)))
+            router.navigateTo(SignInScreen(MasterDetailsScreen(masterId), masterId))
         }
     }
 
