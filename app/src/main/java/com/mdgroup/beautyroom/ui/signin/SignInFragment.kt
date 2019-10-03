@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.navigation.MasterDetailsScreen
 import com.mdgroup.beautyroom.navigation.MasterListScreen
-import com.mdgroup.beautyroom.navigation.StubScreen
+import com.mdgroup.beautyroom.navigation.AppointmentsScreen
 import com.mdgroup.beautyroom.ui.base.bind
 import com.mdgroup.beautyroom.ui.base.inputMask
 import com.mdgroup.beautyroom.ui.base.snackbar
@@ -45,7 +45,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
             val nextScreen: SupportAppScreen? = if (masterId != null && masterId != 0) {
                 arguments?.getParcelable<MasterDetailsScreen>(NEXT_SCREEN_ARG)
             } else {
-                arguments?.getParcelable<StubScreen>(NEXT_SCREEN_ARG)
+                arguments?.getParcelable<AppointmentsScreen>(NEXT_SCREEN_ARG)
             }
 
             viewModel.onSignInClicked(password, nextScreen)
@@ -83,7 +83,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                     MasterListScreen()
                 }
             }
-            is StubScreen -> StubScreen()
+            is AppointmentsScreen -> AppointmentsScreen()
             else -> MasterListScreen()
         }
     }

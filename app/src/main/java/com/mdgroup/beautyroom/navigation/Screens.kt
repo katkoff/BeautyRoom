@@ -8,7 +8,7 @@ import com.mdgroup.beautyroom.ui.master.list.MasterListFragment
 import com.mdgroup.beautyroom.ui.master.schedule.ScheduleFragment
 import com.mdgroup.beautyroom.ui.signin.SignInFragment
 import com.mdgroup.beautyroom.ui.signup.SignUpFragment
-import com.mdgroup.beautyroom.ui.stub.StubFragment
+import com.mdgroup.beautyroom.ui.appointments.AppointmentsFragment
 import kotlinx.android.parcel.Parcelize
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
@@ -39,8 +39,8 @@ class MasterDetailsScreen(
 }
 
 @Parcelize
-class StubScreen : SupportAppScreen(), Parcelable {
-    override fun getFragment(): Fragment = StubFragment.newInstance()
+class AppointmentsScreen : SupportAppScreen(), Parcelable {
+    override fun getFragment(): Fragment = AppointmentsFragment.newInstance()
 }
 
 class ScheduleScreen(

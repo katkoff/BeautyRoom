@@ -1,10 +1,10 @@
 package com.mdgroup.beautyroom.ui.bottomnavigation
 
 import com.mdgroup.beautyroom.navigation.MasterListScreen
-import com.mdgroup.beautyroom.navigation.StubScreen
+import com.mdgroup.beautyroom.navigation.AppointmentsScreen
 
 object BottomNavigationScreens {
 
     val masterListScreen = MasterListScreen()
-    val appointmentListScreen = StubScreen() // TODO implement appointments screen
+    val appointmentListScreen = AppointmentsScreen() // TODO implement appointments screen
 }
