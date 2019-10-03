@@ -1,10 +1,7 @@
 package com.mdgroup.beautyroom.di.modules
 
 import com.mdgroup.beautyroom.data.local.AppointmentStateHolder
-import com.mdgroup.beautyroom.domain.interactor.MastersInteractor
-import com.mdgroup.beautyroom.domain.interactor.SessionInteractor
-import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
-import com.mdgroup.beautyroom.domain.interactor.SignUpInteractor
+import com.mdgroup.beautyroom.domain.interactor.*
 import org.koin.dsl.module
 
 private val appointmentStateHolder = AppointmentStateHolder()
@@ -18,4 +15,5 @@ val domainModule = module {
     factory { SignInInteractor(get(), get()) }
     factory { SignUpInteractor(get(), get()) }
     factory { MastersInteractor(get()) }
+    factory { AppointmentsInteractor(get()) }
 }

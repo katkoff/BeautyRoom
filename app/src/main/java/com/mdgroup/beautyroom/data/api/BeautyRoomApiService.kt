@@ -6,14 +6,10 @@ import retrofit2.http.*
 interface BeautyRoomApiService {
 
     @POST("signin")
-    suspend fun signIn(
-        @Body signInRequestApiModel: SignInRequestApiModel
-    ): SignInResultApiModel
+    suspend fun signIn(@Body signInRequestApiModel: SignInRequestApiModel): SignInResultApiModel
 
     @POST("signup")
-    suspend fun signUp(
-        @Body signUpRequestApiModel: SignUpRequestApiModel
-    ): SignInResultApiModel
+    suspend fun signUp(@Body signUpRequestApiModel: SignUpRequestApiModel): SignInResultApiModel
 
     @GET("masters")
     suspend fun getMasters(): MasterApiResponseModel
@@ -22,8 +18,8 @@ interface BeautyRoomApiService {
     suspend fun getMasterDetails(@Path("id") id: Int): MasterApiModel
 
     @GET("masters/{id}/schedule")
-    suspend fun getMasterScheduleByDate(
-        @Path("id") id: Int,
-        @Query("date") date: String
-    ): List<TimeBlockApiModel>
+    suspend fun getMasterScheduleByDate(@Path("id") id: Int, @Query("date") date: String): List<TimeBlockApiModel>
+
+    @GET("appointments")
+    suspend fun getAppointments(@Query("client") clientId: Int): List<AppointmentApiModel>
 }

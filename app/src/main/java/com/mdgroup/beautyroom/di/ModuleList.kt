@@ -19,5 +19,7 @@ fun allModules(appContext: Context): List<Module> = listOf(
 
     mastersModule,
 
-    scheduleViewModel
+    scheduleViewModel,
+
+    appointmentsModule
 )
