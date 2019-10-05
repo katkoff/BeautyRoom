@@ -4,8 +4,11 @@ import org.threeten.bp.LocalDateTime
 
 data class Appointment(
     val appointmentId: Int,
-    val masterId: Int,
-    val appointmentDateTime: LocalDateTime,
     val serviceName: String,
-    val serviceDuration: Int
+    val masterName: String,
+    val masterPhoneNumber: String,
+    val masterAddress: String,
+    val servicePrice: Int,
+    val serviceDuration: Int,
+    val appointmentDateTime: LocalDateTime
 )

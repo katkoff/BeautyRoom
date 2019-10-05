@@ -92,7 +92,7 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
             appointmentState.service?.duration?.toString() ?: getString(R.string.unknown_placeholder)
 
         val appointmentDateTimeTextView = sheetView.findViewById<TextView>(R.id.textView_appointmentDateTime)
-        val datePattern = DateTimeFormatter.ofPattern("dd:MM:yyyy")
+        val datePattern = DateTimeFormatter.ofPattern("dd.MM.yyyy")
         val dateString = appointmentState.appointmentDate?.format(datePattern)?.toString().orEmpty()
         val timeString = appointmentState.appointmentTime?.toString().orEmpty()
         appointmentDateTimeTextView.text = "$dateString  $timeString"

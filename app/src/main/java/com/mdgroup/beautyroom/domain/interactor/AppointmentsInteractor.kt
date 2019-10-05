@@ -11,8 +11,10 @@ class AppointmentsInteractor(
 
     suspend fun getAppointments(): List<Appointment> {
         val appointmentApiList = beautyRoomApiService.getAppointments(1)
-        
-        return AppointmentApiMapper.mapApiAppointmentListToDomain(appointmentApiList)
+        return appointmentApiList.map {
+            val master = beautyRoomApiService.getMasterDetails(it.masterId)
+            AppointmentApiMapper.mapAppointmentApiModelToDomain(it, master)
+        }
     }
 
     suspend fun sendAppointments(appointmentSend: AppointmentSend) {
