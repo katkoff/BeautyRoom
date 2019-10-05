@@ -6,16 +6,20 @@ import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.data.api.ErrorHandler
 import com.mdgroup.beautyroom.data.local.AppointmentState
 import com.mdgroup.beautyroom.data.local.AppointmentStateHolder
+import com.mdgroup.beautyroom.domain.interactor.AppointmentsInteractor
 import com.mdgroup.beautyroom.domain.interactor.MastersInteractor
+import com.mdgroup.beautyroom.domain.model.AppointmentSend
 import com.mdgroup.beautyroom.domain.model.TimeBlock
 import com.mdgroup.beautyroom.ui.base.SingleLiveEvent
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
 
 class ScheduleViewModel(
     private val mastersInteractor: MastersInteractor,
+    private val appointmentsInteractor: AppointmentsInteractor,
     private val router: Router,
     private val errorHandler: ErrorHandler,
     private val masterId: Int,
@@ -78,5 +82,21 @@ class ScheduleViewModel(
     private fun updateAppointmentState(localDate: LocalDate) {
         val updatedAppointmentState = appointmentStateHolder.appointmentState!!.copy(appointmentDate = localDate)
         appointmentStateHolder.appointmentState = updatedAppointmentState
+    }
+
+    fun onAcceptButtonClicked(appointmentState: AppointmentState) {
+        viewModelScope.launchWithHandlers(
+            ::handleProgress,
+            ::handleError
+        ) {
+            appointmentsInteractor.sendAppointments(AppointmentSend(
+                clientId = 1,
+                serviceId = appointmentState.service!!.id,
+                masterId = appointmentState.master!!.id,
+                dateTime = LocalDateTime.of(appointmentState.appointmentDate, appointmentState.appointmentTime)
+            ))
+
+            loadSchedule()
+        }
     }
 }

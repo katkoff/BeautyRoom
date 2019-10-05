@@ -22,4 +22,7 @@ interface BeautyRoomApiService {
 
     @GET("appointments")
     suspend fun getAppointments(@Query("client") clientId: Int): List<AppointmentApiModel>
+
+    @POST("appointments")
+    suspend fun sendAppointments(@Body appointmentSendApiModel: AppointmentSendApiModel)
 }

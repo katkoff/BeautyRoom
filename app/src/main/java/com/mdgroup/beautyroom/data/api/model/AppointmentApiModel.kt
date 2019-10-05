@@ -1,7 +1,6 @@
 package com.mdgroup.beautyroom.data.api.model
 
 import com.google.gson.annotations.SerializedName
-import org.threeten.bp.LocalDateTime
 
 data class AppointmentApiModel(
     @SerializedName("appointmentId")

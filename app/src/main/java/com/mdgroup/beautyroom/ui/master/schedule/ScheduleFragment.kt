@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -102,7 +101,10 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
         dialog.show()
 
         val acceptButton = sheetView.findViewById<Button>(R.id.button_sendAppointment)
-        acceptButton.setOnClickListener { Toast.makeText(context, "DONE!", Toast.LENGTH_SHORT).show() }
+        acceptButton.setOnClickListener {
+            scheduleViewModel.onAcceptButtonClicked(appointmentState)
+            dialog.dismiss()
+        }
     }
 
     private fun initCalendar() {

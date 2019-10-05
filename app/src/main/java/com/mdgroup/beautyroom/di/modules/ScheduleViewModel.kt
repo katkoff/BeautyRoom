@@ -8,6 +8,7 @@ val scheduleViewModel = module {
     viewModel {(masterId: Int) ->
         ScheduleViewModel(
             mastersInteractor = get(),
+            appointmentsInteractor = get(),
             router = get(),
             errorHandler = get(),
             masterId = masterId,
