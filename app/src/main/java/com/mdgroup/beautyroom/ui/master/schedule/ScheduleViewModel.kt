@@ -96,7 +96,7 @@ class ScheduleViewModel(
                 dateTime = LocalDateTime.of(appointmentState.appointmentDate, appointmentState.appointmentTime)
             ))
 
-            loadSchedule()
+            onDateChangeClicked(appointmentState.appointmentDate!!)
         }
     }
 }
