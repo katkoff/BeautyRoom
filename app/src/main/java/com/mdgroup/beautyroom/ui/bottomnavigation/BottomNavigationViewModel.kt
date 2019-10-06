@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.domain.interactor.SessionInteractor
+import com.mdgroup.beautyroom.navigation.BottomNavigationScreen
+import com.mdgroup.beautyroom.navigation.ScreenFactory
 import com.mdgroup.beautyroom.navigation.SignInScreen
 import com.mdgroup.beautyroom.ui.bottomnavigation.BottomNavigationScreens.appointmentListScreen
 import com.mdgroup.beautyroom.ui.bottomnavigation.BottomNavigationScreens.masterListScreen
@@ -25,7 +27,12 @@ class BottomNavigationViewModel(
                     currentScreen.value = appointmentListScreen
                 } else {
                     currentScreen.value = masterListScreen
-                    router.navigateTo(SignInScreen(appointmentListScreen))
+                    router.navigateTo(
+                        SignInScreen(
+                            BottomNavigationScreen(BottomNavigationTab.APPOINTMENT_LIST),
+                            ScreenFactory.BOTTOM_NAVIGATION
+                        )
+                    )
                 }
             }
             else -> currentScreen.value = masterListScreen

@@ -6,10 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.data.api.ErrorHandler
 import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
 import com.mdgroup.beautyroom.domain.model.UserCredentials
-import com.mdgroup.beautyroom.navigation.BottomNavigationScreen
 import com.mdgroup.beautyroom.navigation.SignUpScreen
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 import timber.log.Timber
 
 class SignInViewModel(
@@ -23,14 +23,14 @@ class SignInViewModel(
 
     private var phone = ""
 
-    fun onSignInClicked(password: String) {
+    fun onSignInClicked(password: String, nextScreen: SupportAppScreen) {
         viewModelScope.launchWithHandlers(
             progressHandler = ::handleProgress,
             errorHandler = ::handleError
         ) {
 
             signInInteractor.signIn(assembleUserCredentials(password))
-            router.newRootScreen(BottomNavigationScreen())
+            router.newRootScreen(nextScreen)
         }
     }
 

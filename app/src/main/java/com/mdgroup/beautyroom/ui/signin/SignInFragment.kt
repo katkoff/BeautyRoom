@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.mdgroup.beautyroom.R
+import com.mdgroup.beautyroom.navigation.ScreenFactory
 import com.mdgroup.beautyroom.ui.base.bind
 import com.mdgroup.beautyroom.ui.base.inputMask
 import com.mdgroup.beautyroom.ui.base.snackbar
@@ -37,13 +38,20 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     private fun initClickListeners() {
         button_sign_in.setOnClickListener {
             val password = inputEditText_password.text.toString().trim()
-
-            viewModel.onSignInClicked(password)
+            viewModel.onSignInClicked(password, getNextScreen())
         }
 
         button_sign_up.setOnClickListener {
             viewModel.onSignUpClicked()
         }
+    }
+
+    private fun getNextScreen(): SupportAppScreen {
+        val screenFactory = requireArguments().getSerializable(SCREEN_FACTORY_ARG) as ScreenFactory?
+        return screenFactory?.getScreen(
+            requireArguments(),
+            NEXT_SCREEN_ARG
+        )!!
     }
 
     private fun initInputMask() {
@@ -52,26 +60,17 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         }
     }
 
-//    private fun recognizeScreen(nextScreen: SupportAppScreen, screenKey: String?): SupportAppScreen = when (nextScreen) {
-//        is MasterDetailsScreen -> {
-//            if (masterId != null) {
-//                MasterDetailsScreen(masterId)
-//            } else {
-//                MasterListScreen()
-//            }
-//        }
-//        is AppointmentsScreen -> AppointmentsScreen()
-//        else -> MasterListScreen()
-//    }
-
     companion object {
         private const val NEXT_SCREEN_ARG = "NEXT_SCREEN_ARG"
-        private const val SCREEN_KEY_ARG = "SCREEN_KEY_ARG"
+        private const val SCREEN_FACTORY_ARG = "SCREEN_FACTORY_ARG"
 
-        fun newInstance(nextScreen: SupportAppScreen) = SignInFragment().apply {
+        fun newInstance(
+            nextScreen: SupportAppScreen,
+            screenFactory: ScreenFactory
+        ) = SignInFragment().apply {
             arguments = bundleOf(
                 NEXT_SCREEN_ARG to nextScreen,
-                SCREEN_KEY_ARG to nextScreen.screenKey
+                SCREEN_FACTORY_ARG to screenFactory
             )
         }
     }

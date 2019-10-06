@@ -14,18 +14,20 @@ import kotlinx.android.parcel.Parcelize
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 class SignInScreen(
-    private val nextScreen: SupportAppScreen
+    private val nextScreen: SupportAppScreen,
+    private val screenFactory: ScreenFactory
 ) : SupportAppScreen() {
-    override fun getFragment() = SignInFragment.newInstance(nextScreen)
+    override fun getFragment() = SignInFragment.newInstance(nextScreen, screenFactory)
 }
 
 class SignUpScreen : SupportAppScreen() {
     override fun getFragment() = SignUpFragment.newInstance()
 }
 
+@Parcelize
 class BottomNavigationScreen(
     private val bottomNavigationTab: BottomNavigationTab = BottomNavigationTab.MASTER_LIST
-) : SupportAppScreen() {
+) : SupportAppScreen(), Parcelable {
     override fun getFragment() = BottomNavigationFragment.newInstance(bottomNavigationTab)
 }
 
@@ -33,10 +35,9 @@ class MasterListScreen : SupportAppScreen() {
     override fun getFragment() = MasterListFragment.newInstance()
 }
 
-@Parcelize
 class MasterDetailsScreen(
     private val masterId: Int
-) : SupportAppScreen(), Parcelable {
+) : SupportAppScreen() {
     override fun getFragment(): Fragment = MasterDetailsFragment.newInstance(masterId)
 }
 
