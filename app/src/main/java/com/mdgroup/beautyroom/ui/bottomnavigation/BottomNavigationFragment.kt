@@ -76,6 +76,7 @@ class BottomNavigationFragment : Fragment(R.layout.fragment_bottom_navigation) {
                 setMaxLifecycle(it, Lifecycle.State.RESUMED)
             }
         }
+        bottomNavigationViewModel.onScreenShown(screen)
     }
 
     private fun getCurrentFragment(): Fragment? {
@@ -86,12 +87,22 @@ class BottomNavigationFragment : Fragment(R.layout.fragment_bottom_navigation) {
         return when (tag) {
             masterListScreen.screenKey -> masterListScreen
             appointmentListScreen.screenKey -> appointmentListScreen
-            else -> masterListScreen
+            else -> getStartScreen()
         }
     }
 
-    companion object {
+    private fun getStartScreen(): SupportAppScreen =
+        when (arguments?.getSerializable(ARG_TAB) as BottomNavigationTab?) {
+            BottomNavigationTab.MASTER_LIST -> masterListScreen
+            BottomNavigationTab.APPOINTMENT_LIST -> appointmentListScreen
+            null -> masterListScreen
+        }
 
-        fun newInstance() = BottomNavigationFragment().apply { arguments = bundleOf() }
+    companion object {
+        private const val ARG_TAB = "ARG_TAB"
+
+        fun newInstance(bottomNavigationTab: BottomNavigationTab) = BottomNavigationFragment().apply {
+            arguments = bundleOf(ARG_TAB to bottomNavigationTab)
+        }
     }
 }

@@ -77,8 +77,8 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
             masterDetailsViewModel.onBackPressed()
         }
 
-        appbarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, i ->
-            colorCode = -i
+        appbarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+            colorCode = -verticalOffset
             if (colorCode > 255) colorCode = 255
 
             // Hide toolbar when scroll

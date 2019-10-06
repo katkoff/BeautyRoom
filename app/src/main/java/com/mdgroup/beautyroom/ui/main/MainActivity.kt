@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            // TODO: implement checking token in prefs using "checkAlreadyLogged()" method
-//            router.newRootScreen(SignInScreen())
             router.newRootScreen(BottomNavigationScreen())
         }
     }

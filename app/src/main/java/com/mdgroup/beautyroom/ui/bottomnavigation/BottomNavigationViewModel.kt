@@ -25,10 +25,16 @@ class BottomNavigationViewModel(
                     currentScreen.value = appointmentListScreen
                 } else {
                     currentScreen.value = masterListScreen
-                    router.navigateTo(SignInScreen(appointmentListScreen, null))
+                    router.navigateTo(SignInScreen(appointmentListScreen))
                 }
             }
             else -> currentScreen.value = masterListScreen
+        }
+    }
+
+    fun onScreenShown(screen: SupportAppScreen) {
+        if (currentScreen.value != screen) {
+            currentScreen.value = screen
         }
     }
 }

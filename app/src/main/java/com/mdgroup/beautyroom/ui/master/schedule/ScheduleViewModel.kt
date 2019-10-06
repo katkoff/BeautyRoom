@@ -8,10 +8,13 @@ import com.mdgroup.beautyroom.data.local.AppointmentState
 import com.mdgroup.beautyroom.data.local.AppointmentStateHolder
 import com.mdgroup.beautyroom.domain.interactor.AppointmentsInteractor
 import com.mdgroup.beautyroom.domain.interactor.MastersInteractor
+import com.mdgroup.beautyroom.domain.interactor.SessionInteractor
 import com.mdgroup.beautyroom.domain.model.AppointmentSend
 import com.mdgroup.beautyroom.domain.model.TimeBlock
+import com.mdgroup.beautyroom.navigation.BottomNavigationScreen
 import com.mdgroup.beautyroom.ui.base.SingleLiveEvent
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
+import com.mdgroup.beautyroom.ui.bottomnavigation.BottomNavigationTab
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 import ru.terrakok.cicerone.Router
@@ -20,6 +23,7 @@ import timber.log.Timber
 class ScheduleViewModel(
     private val mastersInteractor: MastersInteractor,
     private val appointmentsInteractor: AppointmentsInteractor,
+    private val sessionInteractor: SessionInteractor,
     private val router: Router,
     private val errorHandler: ErrorHandler,
     private val masterId: Int,
@@ -89,14 +93,16 @@ class ScheduleViewModel(
             ::handleProgress,
             ::handleError
         ) {
-            appointmentsInteractor.sendAppointment(AppointmentSend(
-                clientId = 1,
-                serviceId = appointmentState.service!!.id,
-                masterId = appointmentState.master!!.id,
-                dateTime = LocalDateTime.of(appointmentState.appointmentDate, appointmentState.appointmentTime)
-            ))
+            if(sessionInteractor.isSignedIn()) {
+                appointmentsInteractor.sendAppointment(AppointmentSend(
+                    clientId = 1,
+                    serviceId = appointmentState.service!!.id,
+                    masterId = appointmentState.master!!.id,
+                    dateTime = LocalDateTime.of(appointmentState.appointmentDate, appointmentState.appointmentTime)
+                ))
 
-            onDateChangeClicked(appointmentState.appointmentDate!!)
+                router.newRootScreen(BottomNavigationScreen(BottomNavigationTab.APPOINTMENT_LIST))
+            }
         }
     }
 }

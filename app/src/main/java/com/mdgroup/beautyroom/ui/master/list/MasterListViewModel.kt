@@ -8,7 +8,6 @@ import com.mdgroup.beautyroom.domain.interactor.MastersInteractor
 import com.mdgroup.beautyroom.domain.interactor.SessionInteractor
 import com.mdgroup.beautyroom.domain.model.Master
 import com.mdgroup.beautyroom.navigation.MasterDetailsScreen
-import com.mdgroup.beautyroom.navigation.SignInScreen
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
@@ -38,11 +37,7 @@ class MasterListViewModel(
     }
 
     fun onMasterClicked(masterId: Int) {
-        if (sessionInteractor.isSignedIn()) {
-            router.navigateTo(MasterDetailsScreen(masterId))
-        } else {
-            router.navigateTo(SignInScreen(MasterDetailsScreen(masterId), masterId))
-        }
+        router.navigateTo(MasterDetailsScreen(masterId))
     }
 
     private fun handleProgress(isProgress: Boolean) {

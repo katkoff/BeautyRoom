@@ -6,9 +6,6 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.mdgroup.beautyroom.R
-import com.mdgroup.beautyroom.navigation.MasterDetailsScreen
-import com.mdgroup.beautyroom.navigation.MasterListScreen
-import com.mdgroup.beautyroom.navigation.AppointmentsScreen
 import com.mdgroup.beautyroom.ui.base.bind
 import com.mdgroup.beautyroom.ui.base.inputMask
 import com.mdgroup.beautyroom.ui.base.snackbar
@@ -41,14 +38,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         button_sign_in.setOnClickListener {
             val password = inputEditText_password.text.toString().trim()
 
-            val masterId = arguments?.getInt(MASTER_ID_ARG)
-            val nextScreen: SupportAppScreen? = if (masterId != null && masterId != 0) {
-                arguments?.getParcelable<MasterDetailsScreen>(NEXT_SCREEN_ARG)
-            } else {
-                arguments?.getParcelable<AppointmentsScreen>(NEXT_SCREEN_ARG)
-            }
-
-            viewModel.onSignInClicked(password, nextScreen)
+            viewModel.onSignInClicked(password)
         }
 
         button_sign_up.setOnClickListener {
@@ -62,29 +52,27 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         }
     }
 
-
+//    private fun recognizeScreen(nextScreen: SupportAppScreen, screenKey: String?): SupportAppScreen = when (nextScreen) {
+//        is MasterDetailsScreen -> {
+//            if (masterId != null) {
+//                MasterDetailsScreen(masterId)
+//            } else {
+//                MasterListScreen()
+//            }
+//        }
+//        is AppointmentsScreen -> AppointmentsScreen()
+//        else -> MasterListScreen()
+//    }
 
     companion object {
         private const val NEXT_SCREEN_ARG = "NEXT_SCREEN_ARG"
-        private const val MASTER_ID_ARG = "MASTER_ID_ARG"
+        private const val SCREEN_KEY_ARG = "SCREEN_KEY_ARG"
 
-        fun newInstance(nextScreen: SupportAppScreen, masterId: Int?) = SignInFragment().apply {
+        fun newInstance(nextScreen: SupportAppScreen) = SignInFragment().apply {
             arguments = bundleOf(
-                NEXT_SCREEN_ARG to recognizeScreen(nextScreen, masterId),
-                MASTER_ID_ARG to masterId
+                NEXT_SCREEN_ARG to nextScreen,
+                SCREEN_KEY_ARG to nextScreen.screenKey
             )
-        }
-
-        private fun recognizeScreen(nextScreen: SupportAppScreen, masterId: Int?) = when (nextScreen) {
-            is MasterDetailsScreen -> {
-                if (masterId != null) {
-                    MasterDetailsScreen(masterId)
-                } else {
-                    MasterListScreen()
-                }
-            }
-            is AppointmentsScreen -> AppointmentsScreen()
-            else -> MasterListScreen()
         }
     }
 }
