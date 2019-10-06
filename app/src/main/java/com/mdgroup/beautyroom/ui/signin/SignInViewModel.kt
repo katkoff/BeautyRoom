@@ -23,14 +23,18 @@ class SignInViewModel(
 
     private var phone = ""
 
-    fun onSignInClicked(password: String, nextScreen: SupportAppScreen) {
+    fun onSignInClicked(password: String, nextScreen: SupportAppScreen, isReplace: Boolean) {
         viewModelScope.launchWithHandlers(
             progressHandler = ::handleProgress,
             errorHandler = ::handleError
         ) {
 
             signInInteractor.signIn(assembleUserCredentials(password))
-            router.newRootScreen(nextScreen)
+            if (isReplace) {
+                router.replaceScreen(nextScreen)
+            } else {
+                router.newRootScreen(nextScreen)
+            }
         }
     }
 

@@ -15,9 +15,10 @@ import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 class SignInScreen(
     private val nextScreen: SupportAppScreen,
-    private val screenFactory: ScreenFactory
+    private val screenFactory: ScreenFactory,
+    private val isReplace: Boolean
 ) : SupportAppScreen() {
-    override fun getFragment() = SignInFragment.newInstance(nextScreen, screenFactory)
+    override fun getFragment() = SignInFragment.newInstance(nextScreen, screenFactory, isReplace)
 }
 
 class SignUpScreen : SupportAppScreen() {
@@ -46,9 +47,9 @@ class AppointmentsScreen : SupportAppScreen(), Parcelable {
     override fun getFragment(): Fragment = AppointmentsFragment.newInstance()
 }
 
+@Parcelize
 class ScheduleScreen(
-    private val masterId: Int,
-    private val serviceName: String
-) : SupportAppScreen() {
-    override fun getFragment(): Fragment = ScheduleFragment.newInstance(masterId, serviceName)
+    private val masterId: Int
+) : SupportAppScreen(), Parcelable {
+    override fun getFragment(): Fragment = ScheduleFragment.newInstance(masterId)
 }

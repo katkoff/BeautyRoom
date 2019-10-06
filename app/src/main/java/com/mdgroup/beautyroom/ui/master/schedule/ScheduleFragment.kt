@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_schedule.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.threeten.bp.LocalDate
+import org.threeten.bp.ZoneId
 import org.threeten.bp.format.DateTimeFormatter
 
 class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
@@ -41,6 +42,12 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
     }
 
     private fun bindViewModel() {
+        bind(scheduleViewModel.title) {
+            toolbar.title = it
+        }
+        bind(scheduleViewModel.date) {
+            calendarView.date = it.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli()
+        }
         bind(scheduleViewModel.errorMessage) {
             snackbar(it)
         }
@@ -114,7 +121,6 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
     }
 
     private fun initToolbar() {
-        toolbar.title = arguments?.getString(ARG_SERVICE_NAME)
         toolbar.setNavigationOnClickListener { scheduleViewModel.onBackPressed() }
     }
 
@@ -134,15 +140,12 @@ class ScheduleFragment : Fragment(R.layout.fragment_schedule) {
     companion object {
 
         private const val ARG_MASTER_ID = "ARG_MASTER_ID"
-        private const val ARG_SERVICE_NAME = "ARG_SERVICE_NAME"
 
         fun newInstance(
-            masterId: Int,
-            serviceName: String
+            masterId: Int
         ) = ScheduleFragment().apply {
             arguments = bundleOf(
-                ARG_MASTER_ID to masterId,
-                ARG_SERVICE_NAME to serviceName
+                ARG_MASTER_ID to masterId
             )
         }
     }

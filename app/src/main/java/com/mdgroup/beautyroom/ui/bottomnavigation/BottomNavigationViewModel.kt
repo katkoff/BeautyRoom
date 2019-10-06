@@ -30,7 +30,8 @@ class BottomNavigationViewModel(
                     router.navigateTo(
                         SignInScreen(
                             BottomNavigationScreen(BottomNavigationTab.APPOINTMENT_LIST),
-                            ScreenFactory.BOTTOM_NAVIGATION
+                            ScreenFactory.BOTTOM_NAVIGATION,
+                            isReplace = false
                         )
                     )
                 }

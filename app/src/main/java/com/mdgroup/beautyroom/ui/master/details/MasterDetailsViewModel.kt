@@ -49,8 +49,8 @@ class MasterDetailsViewModel(
     }
 
     fun onServiceClicked(masterId: Int, service: Service) {
-        router.navigateTo(ScheduleScreen(masterId, service.name))
         updateAppointmentState(service)
+        router.navigateTo(ScheduleScreen(masterId))
     }
 
     private fun updateAppointmentState(service: Service) {

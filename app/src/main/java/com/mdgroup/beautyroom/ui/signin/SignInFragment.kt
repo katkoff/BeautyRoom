@@ -24,6 +24,8 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         bindViewModel()
         initClickListeners()
         initInputMask()
+        inputEditText_phone.setText("9232531690")
+        inputEditText_password.setText("kee1o")
     }
 
     private fun bindViewModel() {
@@ -38,7 +40,7 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     private fun initClickListeners() {
         button_sign_in.setOnClickListener {
             val password = inputEditText_password.text.toString().trim()
-            viewModel.onSignInClicked(password, getNextScreen())
+            viewModel.onSignInClicked(password, getNextScreen(), requireArguments().getBoolean(IS_REPLACE_ARG))
         }
 
         button_sign_up.setOnClickListener {
@@ -63,14 +65,17 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
     companion object {
         private const val NEXT_SCREEN_ARG = "NEXT_SCREEN_ARG"
         private const val SCREEN_FACTORY_ARG = "SCREEN_FACTORY_ARG"
+        private const val IS_REPLACE_ARG = "IS_REPLACE_ARG"
 
         fun newInstance(
             nextScreen: SupportAppScreen,
-            screenFactory: ScreenFactory
+            screenFactory: ScreenFactory,
+            isReplace: Boolean
         ) = SignInFragment().apply {
             arguments = bundleOf(
                 NEXT_SCREEN_ARG to nextScreen,
-                SCREEN_FACTORY_ARG to screenFactory
+                SCREEN_FACTORY_ARG to screenFactory,
+                IS_REPLACE_ARG to isReplace
             )
         }
     }
