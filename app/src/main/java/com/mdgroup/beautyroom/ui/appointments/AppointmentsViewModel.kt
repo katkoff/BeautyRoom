@@ -41,4 +41,14 @@ class AppointmentsViewModel(
         errorMessage.value = errorHandler.getErrorMessage(throwable)
         Timber.d(throwable)
     }
+
+    fun onAppointmentRemoveButtonClicked(appointmentId: Int) {
+        viewModelScope.launchWithHandlers(
+            ::handleProgress,
+            ::handleError
+        ) {
+            appointmentsInteractor.deleteAppointment(appointmentId)
+            appointmentList.value = appointmentsInteractor.getAppointments()
+        }
+    }
 }

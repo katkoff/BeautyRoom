@@ -28,20 +28,13 @@ object AppointmentApiMapper {
         val dateTime = LocalDateTime.parse(
             appointmentApiModel.appointmentDateTime,
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
-//        return Appointment(
-//            appointmentId = appointmentApiModel.appointmentId,
-//            masterId = appointmentApiModel.masterId,
-//            appointmentDateTime = dateTime,
-//            serviceName = appointmentApiModel.serviceName,
-//            serviceDuration = appointmentApiModel.serviceDuration
-//        )
         return Appointment(
             appointmentId = appointmentApiModel.appointmentId,
             serviceName = appointmentApiModel.serviceName,
             masterName = "${masterApiModel.firstName} ${masterApiModel.lastName}",
             masterPhoneNumber = masterApiModel.mobilePhone,
             masterAddress = masterApiModel.address,
-            servicePrice = masterApiModel.services.first { it.name == appointmentApiModel.serviceName }.price,
+            servicePrice = masterApiModel.services.first { it.id == appointmentApiModel.serviceId }.price,
             serviceDuration = appointmentApiModel.serviceDuration,
             appointmentDateTime = dateTime
 

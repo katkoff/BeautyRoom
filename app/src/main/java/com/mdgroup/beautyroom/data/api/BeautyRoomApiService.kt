@@ -24,5 +24,8 @@ interface BeautyRoomApiService {
     suspend fun getAppointments(@Query("client") clientId: Int): List<AppointmentApiModel>
 
     @POST("appointments")
-    suspend fun sendAppointments(@Body appointmentSendApiModel: AppointmentSendApiModel)
+    suspend fun sendAppointment(@Body appointmentSendApiModel: AppointmentSendApiModel)
+
+    @DELETE("appointments/{appointmentId}")
+    suspend fun deleteAppointment(@Path("appointmentId") appointmentId: Int)
 }

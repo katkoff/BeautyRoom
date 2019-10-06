@@ -24,7 +24,7 @@ class AppointmentsFragment : Fragment(R.layout.fragment_appointment_list) {
 
     private fun bindViewModel() {
         bind(viewModel.appointmentList) {
-            adapter.setData(it)
+            adapter.submitList(it.toMutableList())
         }
         bind(viewModel.errorMessage) {
             snackbar(it)
@@ -35,7 +35,9 @@ class AppointmentsFragment : Fragment(R.layout.fragment_appointment_list) {
     }
 
     private fun initRecycler() {
-        adapter = AppointmentsAdapter()
+        adapter = AppointmentsAdapter { appointmentId ->
+            viewModel.onAppointmentRemoveButtonClicked(appointmentId)
+        }
         recyclerView.adapter = adapter
 
         swipeRefreshLayout.setOnRefreshListener { viewModel.onRefresh() }

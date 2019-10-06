@@ -89,7 +89,7 @@ class ScheduleViewModel(
             ::handleProgress,
             ::handleError
         ) {
-            appointmentsInteractor.sendAppointments(AppointmentSend(
+            appointmentsInteractor.sendAppointment(AppointmentSend(
                 clientId = 1,
                 serviceId = appointmentState.service!!.id,
                 masterId = appointmentState.master!!.id,

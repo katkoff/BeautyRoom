@@ -17,8 +17,10 @@ class AppointmentsInteractor(
         }
     }
 
-    suspend fun sendAppointments(appointmentSend: AppointmentSend) {
+    suspend fun sendAppointment(appointmentSend: AppointmentSend) {
         val appointmentSendApiModel = AppointmentApiMapper.mapSendAppointmentToApiModel(appointmentSend)
-        beautyRoomApiService.sendAppointments(appointmentSendApiModel)
+        beautyRoomApiService.sendAppointment(appointmentSendApiModel)
     }
+
+    suspend fun deleteAppointment(appointmentId: Int) = beautyRoomApiService.deleteAppointment(appointmentId)
 }

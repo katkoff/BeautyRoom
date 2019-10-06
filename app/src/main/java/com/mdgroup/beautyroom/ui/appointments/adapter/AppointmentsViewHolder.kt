@@ -11,7 +11,7 @@ import org.threeten.bp.format.DateTimeFormatter
 class AppointmentsViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
     LayoutContainer {
 
-    fun bind(appointment: Appointment) {
+    fun bind(appointment: Appointment, onRemoveButtonClicked: (Int) -> Unit) {
 
         textView_serviceName.text = appointment.serviceName.ifEmpty {
             itemView.resources.getString(R.string.unknown_placeholder)
@@ -37,5 +37,7 @@ class AppointmentsViewHolder(override val containerView: View) : RecyclerView.Vi
         textView_appointmentDateTime.text = appointment.appointmentDateTime.format(dateTimePattern)
 
         textView_serviceDuration.text = appointment.serviceDuration.toString()
+
+        button_remove.setOnClickListener { onRemoveButtonClicked.invoke(appointment.appointmentId) }
     }
 }

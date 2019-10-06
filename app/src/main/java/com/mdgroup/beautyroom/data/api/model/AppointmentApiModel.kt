@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class AppointmentApiModel(
     @SerializedName("appointmentId")
     val appointmentId: Int,
+    @SerializedName("serviceId")
+    val serviceId: Int,
     @SerializedName("masterId")
     val masterId: Int,
     @SerializedName("date")
