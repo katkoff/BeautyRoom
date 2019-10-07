@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.data.api.ErrorHandler
 import com.mdgroup.beautyroom.domain.interactor.SignInInteractor
 import com.mdgroup.beautyroom.domain.model.UserCredentials
+import com.mdgroup.beautyroom.navigation.ScreenFactory
 import com.mdgroup.beautyroom.navigation.SignUpScreen
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
@@ -43,8 +44,12 @@ class SignInViewModel(
         password = password
     )
 
-    fun onSignUpClicked() {
-        router.navigateTo(SignUpScreen())
+    fun onSignUpClicked(
+        nextScreen: SupportAppScreen,
+        screenFactory: ScreenFactory,
+        isReplace: Boolean
+    ) {
+        router.navigateTo(SignUpScreen(nextScreen, screenFactory, isReplace))
     }
 
     fun onPhoneChanged(phoneExtractedValue: String) {

@@ -44,16 +44,17 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         }
 
         button_sign_up.setOnClickListener {
-            viewModel.onSignUpClicked()
+            viewModel.onSignUpClicked(
+                nextScreen = getNextScreen(),
+                screenFactory = requireArguments().getSerializable(SCREEN_FACTORY_ARG) as ScreenFactory,
+                isReplace = requireArguments().getBoolean(IS_REPLACE_ARG)
+            )
         }
     }
 
     private fun getNextScreen(): SupportAppScreen {
         val screenFactory = requireArguments().getSerializable(SCREEN_FACTORY_ARG) as ScreenFactory?
-        return screenFactory?.getScreen(
-            requireArguments(),
-            NEXT_SCREEN_ARG
-        )!!
+        return screenFactory?.getScreen(requireArguments(), NEXT_SCREEN_ARG)!!
     }
 
     private fun initInputMask() {

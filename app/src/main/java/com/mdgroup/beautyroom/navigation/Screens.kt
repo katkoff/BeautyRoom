@@ -21,8 +21,12 @@ class SignInScreen(
     override fun getFragment() = SignInFragment.newInstance(nextScreen, screenFactory, isReplace)
 }
 
-class SignUpScreen : SupportAppScreen() {
-    override fun getFragment() = SignUpFragment.newInstance()
+class SignUpScreen(
+    private val nextScreen: SupportAppScreen,
+    private val screenFactory: ScreenFactory,
+    private val isReplace: Boolean
+) : SupportAppScreen() {
+    override fun getFragment() = SignUpFragment.newInstance(nextScreen, screenFactory, isReplace)
 }
 
 @Parcelize
