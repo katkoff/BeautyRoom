@@ -49,7 +49,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputLayout_phone"
-        app:passwordToggleDrawable="@drawable/show_passport_selector"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
