@@ -25,6 +25,10 @@
 
     <!-- Appointments screen -->
     <string name="appointments_button_remove">Отменить запись</string>
+    <string name="appointments_remove_dialog_title">Отмена записи</string>
+    <string name="appointments_remove_dialog_message">Вы уверены, что хотите отменить запись?</string>
+    <string name="appointments_remove_dialog_positive">Да</string>
+    <string name="appointments_remove_dialog_negative">Нет</string>
 
     <!-- Generic strings -->
     <string name="error_unknown">Что-то пошло не так, попробуйте ещё раз</string>

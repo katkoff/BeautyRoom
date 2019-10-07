@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.mdgroup.beautyroom.data.api.ErrorHandler
 import com.mdgroup.beautyroom.domain.interactor.AppointmentsInteractor
 import com.mdgroup.beautyroom.domain.model.Appointment
+import com.mdgroup.beautyroom.ui.base.SingleLiveEvent
 import com.mdgroup.beautyroom.ui.base.launchWithHandlers
 import ru.terrakok.cicerone.Router
 import timber.log.Timber
@@ -19,6 +20,7 @@ class AppointmentsViewModel(
     val appointmentList = MutableLiveData<List<Appointment>>()
     val errorMessage = MutableLiveData<String>()
     val isProgress = MutableLiveData<Boolean>()
+    val removeAppointmentAlert = SingleLiveEvent<Int>()
 
     fun loadAppointments() {
         viewModelScope.launchWithHandlers(
@@ -43,6 +45,10 @@ class AppointmentsViewModel(
     }
 
     fun onAppointmentRemoveButtonClicked(appointmentId: Int) {
+        removeAppointmentAlert.value = appointmentId
+    }
+
+    fun onPositiveRemoveButtonClicked(appointmentId: Int) {
         viewModelScope.launchWithHandlers(
             ::handleProgress,
             ::handleError
