@@ -7,7 +7,6 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.google.android.material.appbar.AppBarLayout
 import com.mdgroup.beautyroom.R
 import com.mdgroup.beautyroom.domain.model.Service
 import com.mdgroup.beautyroom.ui.base.bind
@@ -27,8 +26,6 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
         parametersOf(masterId)
     }
 
-    private var colorCode: Int = 0
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -42,7 +39,6 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
                 .load(master.avatarUrl)
                 .placeholder(R.drawable.avatar_placeholder)
                 .into(imageView_avatar)
-            textView_name.text = "${master.firstName} ${master.lastName} ${master.id}"
             textView_information.text = master.information.ifEmpty { getString(R.string.unknown_placeholder) }
 
             textView_phone.text = master.mobilePhone.ifEmpty { getString(R.string.unknown_placeholder) }
@@ -76,15 +72,6 @@ class MasterDetailsFragment : Fragment(R.layout.fragment_master_details) {
         toolbar.setNavigationOnClickListener {
             masterDetailsViewModel.onBackPressed()
         }
-
-        appbarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-            colorCode = -verticalOffset
-            if (colorCode > 255) colorCode = 255
-
-            // Hide toolbar when scroll
-            toolbar.background.alpha = colorCode
-            toolbar.alpha = colorCode / 256f
-        })
     }
 
     companion object {

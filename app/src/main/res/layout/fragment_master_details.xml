@@ -38,23 +38,11 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="?attr/actionBarSize"
+                        android:layout_marginTop="80dp"
                         android:scaleType="centerCrop"
                         app:civ_border_color="@color/white"
                         app:civ_border_width="1dp"
                         tools:background="@color/cyan_dark" />
-
-                    <TextView
-                        android:id="@+id/textView_name"
-                        style="@style/TextAppearance.MaterialComponents.Headline5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginRight="16dp"
-                        android:gravity="center_horizontal"
-                        tools:text="Jesse Pinkman" />
 
                     <TextView
                         android:id="@+id/textView_information"
@@ -63,6 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginBottom="16dp"
                         android:gravity="center"
@@ -76,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginTop="300dp"
+                    android:layout_marginTop="316dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="4dp"
