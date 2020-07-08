@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commitNow
 import androidx.lifecycle.Lifecycle
 import com.mdgroup.beautyroom.R
+import com.mdgroup.beautyroom.navigation.SignInScreen
 import com.mdgroup.beautyroom.ui.base.bind
 import com.mdgroup.beautyroom.ui.bottomnavigation.BottomNavigationScreens.appointmentListScreen
 import com.mdgroup.beautyroom.ui.bottomnavigation.BottomNavigationScreens.masterListScreen
@@ -64,7 +65,7 @@ class BottomNavigationFragment : Fragment(R.layout.fragment_bottom_navigation) {
 
         childFragmentManager.commitNow {
             if (nextFragment == null) {
-                add(R.id.frameLayout_commonContainer, screen.fragment, screen.screenKey)
+                screen.fragment?.let { add(R.id.frameLayout_commonContainer, it, screen.screenKey) }
             }
 
             currentFragment?.let {
